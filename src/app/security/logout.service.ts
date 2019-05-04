@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class LogoutService {
 
-  // tokensRevokeUrl = 'http://localhost:9002/tokens/revoke';
   tokensRevokeUrl = environment.apiUrl + '/tokens/revoke';
 
   constructor(
