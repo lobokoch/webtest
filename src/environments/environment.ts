@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:9090/api',
+  authApiUrl: 'http://localhost:9090/api',
+
+  tokenWhitelistedDomains: [
+    new RegExp('localhost:9090')
+  ],
+
+  tokenBlacklistedRoutes: [
+    new RegExp('\/oauth\/token')
+  ]
 };
 
 /*
@@ -13,3 +23,4 @@ export const environment = {
  * because it will have a performance impact when errors are thrown
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

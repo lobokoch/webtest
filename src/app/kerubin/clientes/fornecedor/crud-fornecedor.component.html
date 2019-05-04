@@ -1,0 +1,43 @@
+<div class="container">
+
+  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  	<div class="ui-g">
+  	
+		<div class="ui-g-12">
+			<h1>{{ getTranslation('kerubin.clientes.fornecedor') }}</h1>
+		</div>
+		<div class="ui-g-12 ui-fluid">
+			<label for="id" class="hidden">{{ getTranslation('kerubin.clientes.fornecedor_id') }}</label>
+			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="fornecedor.id" name="id" readonly class="read-only">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="nome">{{ getTranslation('kerubin.clientes.fornecedor_nome') }}</label>
+			<input type="text" pInputText #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
+			<div class="invalid-message" *ngIf="nome.invalid && nome.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="cpfCNPJ">{{ getTranslation('kerubin.clientes.fornecedor_cpfCNPJ') }}</label>
+			<input type="text" pInputText #cpfCNPJ="ngModel" ngModel [(ngModel)]="fornecedor.cpfCNPJ" name="cpfCNPJ" required>
+			<div class="invalid-message" *ngIf="cpfCNPJ.invalid && cpfCNPJ.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label style="display: block" for="deleted" class="hidden">{{ getTranslation('kerubin.clientes.fornecedor_deleted') }}</label>
+			<p-inputSwitch #deleted="ngModel" ngModel [(ngModel)]="fornecedor.deleted" name="deleted"></p-inputSwitch>
+		</div>
+		
+		<div class="ui-g-12">
+			<div class="ui-g-12 ui-md-4">
+				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+				<a routerLink="/fornecedor" pButton label="Pesquisar"></a>
+			</div>
+		</div>
+		
+	
+	</div>
+  </form>
+  
+</div>

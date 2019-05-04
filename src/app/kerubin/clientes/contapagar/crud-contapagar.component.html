@@ -1,0 +1,164 @@
+<div class="container">
+
+  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  	<div class="ui-g">
+  	
+		<div class="ui-g-12">
+			<h1>{{ getTranslation('kerubin.clientes.contaPagar') }}</h1>
+		</div>
+		<div class="ui-g-12 ui-fluid">
+			<label for="id" class="hidden">{{ getTranslation('kerubin.clientes.contaPagar_id') }}</label>
+			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="contaPagar.id" name="id" readonly class="read-only">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-8">
+			<label for="descricao">{{ getTranslation('kerubin.clientes.contaPagar_descricao') }}</label>
+			<input type="text" pInputText #descricao="ngModel" ngModel [(ngModel)]="contaPagar.descricao" name="descricao" required>
+			<div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valor">{{ getTranslation('kerubin.clientes.contaPagar_valor') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valor="ngModel" ngModel [(ngModel)]="contaPagar.valor" name="valor" required>
+			<div class="invalid-message" *ngIf="valor.invalid && valor.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="dataVencimento">{{ getTranslation('kerubin.clientes.contaPagar_dataVencimento') }}</label>
+			<p-calendar dateFormat="dd/mm/yy" #dataVencimento="ngModel" ngModel [(ngModel)]="contaPagar.dataVencimento" name="dataVencimento" required></p-calendar>
+			<div class="invalid-message" *ngIf="dataVencimento.invalid && dataVencimento.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-3">
+			<label for="contaBancaria">{{ getTranslation('kerubin.clientes.contaPagar_contaBancaria') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarContaBancariaAutoCompleteSuggestions" (completeMethod)="contaPagarContaBancariaAutoComplete($event)" (onClear)="contaPagarContaBancariaAutoCompleteClear($event)" [field]="contaPagarContaBancariaAutoCompleteFieldConverter" #contaBancaria="ngModel" ngModel [(ngModel)]="contaPagar.contaBancaria" name="contaBancaria">
+				<ng-template let-contaBancaria pTemplate="item">
+											<div class="ui-helper-clearfix">{{ contaPagarContaBancariaAutoCompleteFieldConverter(contaBancaria) }}</div>
+				</ng-template>
+			</p-autoComplete>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorContaBancaria">{{ getTranslation('kerubin.clientes.contaPagar_valorContaBancaria') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorContaBancaria="ngModel" ngModel [(ngModel)]="contaPagar.valorContaBancaria" name="valorContaBancaria">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-3">
+			<label for="cartaoCredito">{{ getTranslation('kerubin.clientes.contaPagar_cartaoCredito') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarCartaoCreditoAutoCompleteSuggestions" (completeMethod)="contaPagarCartaoCreditoAutoComplete($event)" (onClear)="contaPagarCartaoCreditoAutoCompleteClear($event)" [field]="contaPagarCartaoCreditoAutoCompleteFieldConverter" #cartaoCredito="ngModel" ngModel [(ngModel)]="contaPagar.cartaoCredito" name="cartaoCredito">
+				<ng-template let-cartaoCredito pTemplate="item">
+											<div class="ui-helper-clearfix">{{ contaPagarCartaoCreditoAutoCompleteFieldConverter(cartaoCredito) }}</div>
+				</ng-template>
+			</p-autoComplete>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorCartaoCredito">{{ getTranslation('kerubin.clientes.contaPagar_valorCartaoCredito') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorCartaoCredito="ngModel" ngModel [(ngModel)]="contaPagar.valorCartaoCredito" name="valorCartaoCredito">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorOutrasFormasPagamento">{{ getTranslation('kerubin.clientes.contaPagar_valorOutrasFormasPagamento') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorOutrasFormasPagamento="ngModel" ngModel [(ngModel)]="contaPagar.valorOutrasFormasPagamento" name="valorOutrasFormasPagamento">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="dataPagamento">{{ getTranslation('kerubin.clientes.contaPagar_dataPagamento') }}</label>
+			<p-calendar dateFormat="dd/mm/yy" #dataPagamento="ngModel" ngModel [(ngModel)]="contaPagar.dataPagamento" name="dataPagamento"></p-calendar>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorDesconto">{{ getTranslation('kerubin.clientes.contaPagar_valorDesconto') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorDesconto="ngModel" ngModel [(ngModel)]="contaPagar.valorDesconto" name="valorDesconto">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorMulta">{{ getTranslation('kerubin.clientes.contaPagar_valorMulta') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorMulta="ngModel" ngModel [(ngModel)]="contaPagar.valorMulta" name="valorMulta">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorJuros">{{ getTranslation('kerubin.clientes.contaPagar_valorJuros') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorJuros="ngModel" ngModel [(ngModel)]="contaPagar.valorJuros" name="valorJuros">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorAcrescimos">{{ getTranslation('kerubin.clientes.contaPagar_valorAcrescimos') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorAcrescimos="ngModel" ngModel [(ngModel)]="contaPagar.valorAcrescimos" name="valorAcrescimos">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="valorPago">{{ getTranslation('kerubin.clientes.contaPagar_valorPago') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorPago="ngModel" ngModel [(ngModel)]="contaPagar.valorPago" name="valorPago">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="numDocumento">{{ getTranslation('kerubin.clientes.contaPagar_numDocumento') }}</label>
+			<input type="text" pInputText #numDocumento="ngModel" ngModel [(ngModel)]="contaPagar.numDocumento" name="numDocumento">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="observacoes">{{ getTranslation('kerubin.clientes.contaPagar_observacoes') }}</label>
+			<textarea pInputTextarea rows="3" #observacoes="ngModel" ngModel [(ngModel)]="contaPagar.observacoes" name="observacoes"></textarea>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="fornecedor">{{ getTranslation('kerubin.clientes.contaPagar_fornecedor') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarFornecedorAutoCompleteSuggestions" (completeMethod)="contaPagarFornecedorAutoComplete($event)" (onClear)="contaPagarFornecedorAutoCompleteClear($event)" [field]="contaPagarFornecedorAutoCompleteFieldConverter" #fornecedor="ngModel" ngModel [(ngModel)]="contaPagar.fornecedor" name="fornecedor">
+				<ng-template let-fornecedor pTemplate="item">
+											<div class="ui-helper-clearfix">{{ contaPagarFornecedorAutoCompleteFieldConverter(fornecedor) }}</div>
+				</ng-template>
+			</p-autoComplete>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="agrupador">{{ getTranslation('kerubin.clientes.contaPagar_agrupador') }}</label>
+			<input type="text" pInputText #agrupador="ngModel" ngModel [(ngModel)]="contaPagar.agrupador" name="agrupador">
+		</div>
+		 
+		<!-- BEGIN make copies -->
+		<!-- placeholder="Informe um identificador, exemplo: #luz_2019" -->
+		<!-- <div class="invalid-message" *ngIf="copiesMustHaveGroup && !contaPagar.agrupador">Campo obrigatório para gerar cópias.</div> -->
+		    <p-panel *ngIf="isEditing" class="ui-g-12" header="Gerar cópias da conta"  [toggleable]="true" [collapsed]="true">
+			    <div class="ui-g">
+			    
+				      <div class="ui-g-12 ui-fluid">
+				        <div class="ui-g-12 ui-fluid ui-md-2">
+				          <label for="numberOfCopies">Número de cópias</label>
+				          <p-spinner size="30" name="numberOfCopies" [(ngModel)]="numberOfCopies" [min]="1" [max]="60"></p-spinner>
+				        </div>
+				
+				        <div class="ui-g-12 ui-fluid ui-md-2">
+				          <label for="copiesReferenceField" style="display: block">Campo de referência</label>
+				          <p-dropdown optionLabel="label" name="copiesReferenceField" #copiesReferenceField="ngModel" [options]="copiesReferenceFieldOptions" ngModel [(ngModel)]="copiesReferenceFieldSelected" placeholder="Selecione"></p-dropdown>
+				        </div>
+				
+				        <div class="ui-g-12 ui-md-2 ui-fluid">
+				          <label for="copiesReferenceFieldInterval" style="display: block">Intervalo (dias)</label>
+				          <p-spinner size="30" name="copiesReferenceFieldInterval" [(ngModel)]="copiesReferenceFieldInterval" [min]="1" [max]="1000"></p-spinner>
+				        </div>
+				
+				        <div class="ui-g-12 ui-fluid ui-md-2">
+				          <span style="display: block">&nbsp;</span>
+				          <button pButton (click)="actionFazerCopiasContaPagar()" type="button" pTooltip="Fazer cópias da conta" tooltipPosition="top" icon="pi pi-clone" label="Gerar cópias" class="ui-button-info"></button>
+				        </div>
+				      </div>
+				      
+			    </div>
+		    
+		    </p-panel>
+		    <!-- END make copies -->
+		
+		<div class="ui-g-12">
+			<div class="ui-g-12 ui-md-4">
+				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+				<a routerLink="/contapagar" pButton label="Pesquisar"></a>
+			</div>
+		</div>
+		
+	
+	</div>
+  </form>
+  
+</div>

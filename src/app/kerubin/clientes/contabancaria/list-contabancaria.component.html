@@ -1,0 +1,145 @@
+<div class="container">
+
+  	<div class="ui-g">
+		<div>
+			<h1>{{ getTranslation('kerubin.clientes.contaBancaria') }}</h1>
+		</div>
+		
+		<!-- Begin Filters -->
+		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
+		
+			<div class="ui-g">
+				<div class="ui-g-12">
+					
+					<div class="ui-g-12 ui-md-12 ui-fluid">
+						<label class="label-r">Número da(s) conta(s)</label>
+						<p-autoComplete name="contaBancariaNumeroContaAutoComplete" 
+						placeholder="Digite para pesquisar..." [dropdown]="true" 
+						[(ngModel)]="contaBancariaListFilter.numeroConta" [multiple]="true"
+						[suggestions]="contaBancariaNumeroContaAutoCompleteSuggestions"
+						(completeMethod)="contaBancariaNumeroContaAutoComplete($event)"
+						field="numeroConta"></p-autoComplete>
+					</div>
+				</div>
+			</div>
+			
+			<p-footer>
+				<p-button label="Pesquisar" (click)="contaBancariaFilterSearch()"></p-button>
+			</p-footer>
+		
+		</p-panel>
+		<!-- End Filters -->
+		
+		<!-- Begin GRID -->
+		<div class="ui-g-12" name="data-grid">
+			<p-table selectionMode="single" [loading]="loading" [responsive]="true" [customSort]="true" [paginator]="true" 
+				[value]="contaBancariaListItems"
+			    [rows]="contaBancariaListFilter.pageSize" 
+			    [totalRecords]="contaBancariaListTotalElements"
+			    [lazy]="true" (onLazyLoad)="contaBancariaListOnLazyLoad($event)" >
+			    
+			    <ng-template pTemplate="header">
+		            <tr>
+		            	<th [pSortableColumn]="'titular'">{{ getTranslation('kerubin.clientes.contaBancaria_titular_grid') }}<p-sortIcon [field]="'titular'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'agencia'">{{ getTranslation('kerubin.clientes.contaBancaria_agencia_grid') }}<p-sortIcon [field]="'agencia'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'tipoContaBancaria'">{{ getTranslation('kerubin.clientes.contaBancaria_tipoContaBancaria_grid') }}<p-sortIcon [field]="'tipoContaBancaria'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'numeroConta'">{{ getTranslation('kerubin.clientes.contaBancaria_numeroConta_grid') }}<p-sortIcon [field]="'numeroConta'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'digito'">{{ getTranslation('kerubin.clientes.contaBancaria_digito_grid') }}<p-sortIcon [field]="'digito'"></p-sortIcon></th>
+		            	<th style="width: 8em" [pSortableColumn]="'saldo'">{{ getTranslation('kerubin.clientes.contaBancaria_saldo_grid') }}<p-sortIcon [field]="'saldo'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'numeroCartao'">{{ getTranslation('kerubin.clientes.contaBancaria_numeroCartao_grid') }}<p-sortIcon [field]="'numeroCartao'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'codigoSeguranca'">{{ getTranslation('kerubin.clientes.contaBancaria_codigoSeguranca_grid') }}<p-sortIcon [field]="'codigoSeguranca'"></p-sortIcon></th>
+		            	<th style="width: 7em" [pSortableColumn]="'validade'">{{ getTranslation('kerubin.clientes.contaBancaria_validade_grid') }}<p-sortIcon [field]="'validade'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'bandeiraCartao'">{{ getTranslation('kerubin.clientes.contaBancaria_bandeiraCartao_grid') }}<p-sortIcon [field]="'bandeiraCartao'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'ativo'">{{ getTranslation('kerubin.clientes.contaBancaria_ativo_grid') }}<p-sortIcon [field]="'ativo'"></p-sortIcon></th>
+						<th style="width: 12em">Ações</th>
+		            </tr>
+		        </ng-template>
+		        
+			    <ng-template pTemplate="body" let-contaBancaria>
+		            <tr [pSelectableRow]="contaBancaria">
+		            	<td>
+		            		{{contaBancaria?.titular}}
+		            	</td>
+		            	<td>
+		            		{{contaBancariaAgenciaAutoCompleteFieldConverter(contaBancaria?.agencia)}}
+		            	</td>
+		            	<td>
+		            		{{ getTranslation('kerubin.clientes.contaBancaria_tipoContaBancaria' + '_' + contaBancaria?.tipoContaBancaria.toLowerCase()) }}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.numeroConta}}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.digito}}
+		            	</td>
+		            	<td class="kb-field-money">
+		            		{{contaBancaria?.saldo | currency:'BRL':'symbol':'1.2-2':'pt' }}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.numeroCartao}}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.codigoSeguranca}}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.validade | date:'dd/MM/yyyy'}}
+		            	</td>
+		            	<td>
+		            		{{contaBancariaBandeiraCartaoAutoCompleteFieldConverter(contaBancaria?.bandeiraCartao)}}
+		            	</td>
+		            	<td>
+		            		{{contaBancaria?.ativo}}
+		            	</td>
+		              	<td class="kb-actions">
+		              		<a pButton [routerLink]="['/contabancaria', contaBancaria.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+		              		<!-- <button (click)="mostrarPagarConta(contaBancaria)" pButton icon="pi pi-money"  pTooltip="Pagar esta conta" tooltipPosition="top"></button> -->
+		              		<button (click)="deleteContaBancaria(contaBancaria)" pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"></button>
+		              	</td>
+		            </tr>
+		        </ng-template>
+		        
+		        
+		        <ng-template pTemplate="emptymessage" let-columns>
+				    <tr>
+				        <td [attr.colspan]="12">
+				            Nenhum registro encontrado.
+				        </td>
+				    </tr>
+				</ng-template>
+				
+			</p-table>
+		</div>
+		<!-- End GRID -->
+		
+		<div class="ui-g-12">
+			<a routerLink="/contabancaria/novo" pButton label="Novo registro"></a>
+		</div>
+		
+		<!-- Begin Extras
+		
+		<p-dialog header="Pagar conta" [(visible)]="mostrarDialogPagarConta" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70"
+		        [maximizable]="false" [baseZIndex]="10000">
+		      <div>
+		          <div>Conta: <strong>{{ contaPagar.descricao }}</strong></div>
+		          <div>
+		              <label style="display: block">Valor pago</label>
+		              <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+		              [(ngModel)]="contaPagar.valorPago" pInputText type="text" name="contaPagarValorPago" ngModel placeholder="0,00">
+		          </div>
+		          <div>
+		              <label style="display: block">Data pagamento</label>
+		              <p-calendar name="contaPagarDataPagamento" dateFormat="dd/mm/yy"
+		              [inline]="false" [readonlyInput]="false" [showIcon]="false"
+		               [(ngModel)]="contaPagar.dataPagamento" ngModel></p-calendar>
+		          </div>
+		      </div>
+		        <p-footer>
+		            <button type="button" pButton icon="pi pi-check" (click)="executarPagarConta()" label="Pagar"></button>
+		            <button type="button" pButton icon="pi pi-close" (click)="cancelarPagarConta()" label="Cancelar" class="ui-button-secondary"></button>
+		        </p-footer>
+		</p-dialog>
+		
+		End Extras -->
+	</div>
+  
+</div>

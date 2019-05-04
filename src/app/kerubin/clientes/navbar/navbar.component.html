@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="ui-g">
+      <div class="i-g-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="isMenuShowing = !isMenuShowing"><i class="pi pi-bars"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!isMenuShowing">
+    <li class="navbar-user">{{ getCurrentUserName() }}</li>
+    
+    <!-- Begin Menu Items -->
+    <!-- Begin kerubin.clientes menu itens -->
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/contapagar">Contas a pagar</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/fornecedor">Fornecedor</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/banco">Banco</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/agenciabancaria">Agência bancária</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/bandeiracartao">Bandeira de cartão</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/contabancaria">Conta bancária</a></li>
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/cartaocredito">Cartão de crédito</a></li>
+    <!-- End kerubin.clientes menu itens -->
+    
+    <!-- End Menu Items -->
+    
+    <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
+  </ul>
+
+</nav>

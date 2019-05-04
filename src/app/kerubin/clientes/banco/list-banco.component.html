@@ -1,0 +1,109 @@
+<div class="container">
+
+  	<div class="ui-g">
+		<div>
+			<h1>{{ getTranslation('kerubin.clientes.banco') }}</h1>
+		</div>
+		
+		<!-- Begin Filters -->
+		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
+		
+			<div class="ui-g">
+				<div class="ui-g-12">
+					
+					<div class="ui-g-12 ui-md-12 ui-fluid">
+						<label class="label-r">Nome do(s) banco(s)</label>
+						<p-autoComplete name="bancoNomeAutoComplete" 
+						placeholder="Digite para pesquisar..." [dropdown]="true" 
+						[(ngModel)]="bancoListFilter.nome" [multiple]="true"
+						[suggestions]="bancoNomeAutoCompleteSuggestions"
+						(completeMethod)="bancoNomeAutoComplete($event)"
+						field="nome"></p-autoComplete>
+					</div>
+				</div>
+			</div>
+			
+			<p-footer>
+				<p-button label="Pesquisar" (click)="bancoFilterSearch()"></p-button>
+			</p-footer>
+		
+		</p-panel>
+		<!-- End Filters -->
+		
+		<!-- Begin GRID -->
+		<div class="ui-g-12" name="data-grid">
+			<p-table selectionMode="single" [loading]="loading" [responsive]="true" [customSort]="true" [paginator]="true" 
+				[value]="bancoListItems"
+			    [rows]="bancoListFilter.pageSize" 
+			    [totalRecords]="bancoListTotalElements"
+			    [lazy]="true" (onLazyLoad)="bancoListOnLazyLoad($event)" >
+			    
+			    <ng-template pTemplate="header">
+		            <tr>
+		            	<th [pSortableColumn]="'numero'">{{ getTranslation('kerubin.clientes.banco_numero_grid') }}<p-sortIcon [field]="'numero'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'nome'">{{ getTranslation('kerubin.clientes.banco_nome_grid') }}<p-sortIcon [field]="'nome'"></p-sortIcon></th>
+						<th style="width: 12em">Ações</th>
+		            </tr>
+		        </ng-template>
+		        
+			    <ng-template pTemplate="body" let-banco>
+		            <tr [pSelectableRow]="banco">
+		            	<td>
+		            		{{banco?.numero}}
+		            	</td>
+		            	<td>
+		            		{{banco?.nome}}
+		            	</td>
+		              	<td class="kb-actions">
+		              		<a pButton [routerLink]="['/banco', banco.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+		              		<!-- <button (click)="mostrarPagarConta(banco)" pButton icon="pi pi-money"  pTooltip="Pagar esta conta" tooltipPosition="top"></button> -->
+		              		<button (click)="deleteBanco(banco)" pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"></button>
+		              	</td>
+		            </tr>
+		        </ng-template>
+		        
+		        
+		        <ng-template pTemplate="emptymessage" let-columns>
+				    <tr>
+				        <td [attr.colspan]="3">
+				            Nenhum registro encontrado.
+				        </td>
+				    </tr>
+				</ng-template>
+				
+			</p-table>
+		</div>
+		<!-- End GRID -->
+		
+		<div class="ui-g-12">
+			<a routerLink="/banco/novo" pButton label="Novo registro"></a>
+		</div>
+		
+		<!-- Begin Extras
+		
+		<p-dialog header="Pagar conta" [(visible)]="mostrarDialogPagarConta" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70"
+		        [maximizable]="false" [baseZIndex]="10000">
+		      <div>
+		          <div>Conta: <strong>{{ contaPagar.descricao }}</strong></div>
+		          <div>
+		              <label style="display: block">Valor pago</label>
+		              <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+		              [(ngModel)]="contaPagar.valorPago" pInputText type="text" name="contaPagarValorPago" ngModel placeholder="0,00">
+		          </div>
+		          <div>
+		              <label style="display: block">Data pagamento</label>
+		              <p-calendar name="contaPagarDataPagamento" dateFormat="dd/mm/yy"
+		              [inline]="false" [readonlyInput]="false" [showIcon]="false"
+		               [(ngModel)]="contaPagar.dataPagamento" ngModel></p-calendar>
+		          </div>
+		      </div>
+		        <p-footer>
+		            <button type="button" pButton icon="pi pi-check" (click)="executarPagarConta()" label="Pagar"></button>
+		            <button type="button" pButton icon="pi pi-close" (click)="cancelarPagarConta()" label="Cancelar" class="ui-button-secondary"></button>
+		        </p-footer>
+		</p-dialog>
+		
+		End Extras -->
+	</div>
+  
+</div>
