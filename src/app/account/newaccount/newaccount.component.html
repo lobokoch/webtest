@@ -1,0 +1,42 @@
+<div class="container" style="max-width: 400px; margin: auto">
+  <!--{{ auth.jwtPayload | json }}-->
+
+  <form #newAccountForm="ngForm">
+    <div class="ui-g ui-fluid">
+
+      <div class="ui-g-12">
+        <h1>Vamos criar uma conta</h1>
+      </div>
+
+      <div class="ui-g-12">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input pInputText type="text" name="name" placeholder="Nome completo" ngModel required #name>
+          </div>
+      </div>
+
+      <div class="ui-g-12">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+              <input pInputText type="email" name="username" placeholder="E-mail" ngModel required #username>
+          </div>
+      </div>
+
+      <div class="ui-g-12">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <input pInputText type="password" name="password" placeholder="Senha" ngModel required #password>
+          </div>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton class="ui-button-success" type="submit" label="Criar conta"
+          [disabled]="!newAccountForm.valid"
+          (click)="createNewAccount()">
+        </button>
+      </div>
+
+    </div>
+  </form>
+
+</div>
