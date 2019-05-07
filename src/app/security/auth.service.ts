@@ -11,6 +11,7 @@ export class AuthService {
 
   oauthTokenUrl = environment.apiUrl + '/oauth/token';
   jwtPayload: any;
+  tenant: string = null;
 
   constructor(
     private http: HttpClient,
@@ -57,6 +58,7 @@ export class AuthService {
       .toPromise()
       .then(response => {
         this.storeToken(response.access_token);
+        this.tenant = response.tenant;
       })
       .catch(response => {
         return Promise.reject(response);
@@ -81,6 +83,20 @@ export class AuthService {
     } else {
       // this.jwtPayload = null;
     }
+  }
+
+  public doLoginAnonymous(): Promise<boolean> {
+    const username = 'anonymous@kerubin.com.br';
+    const password = 'Kerubin_Anonymous@!1';
+    return this.login(username, password)
+    .then(() => {
+      console.log('Anonymous login success!');
+      return true;
+    })
+    .catch (e => {
+      console.log('Anonymous login failed: ' + e);
+      return false;
+    });
   }
 
 }

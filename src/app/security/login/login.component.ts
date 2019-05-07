@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string) {
     this.auth.login(username, password)
     .then(() => {
-      this.router.navigate(['/mainmenu']);
+      const tenant = this.auth.tenant;
+      if (tenant) {
+        this.router.navigate(['/mainmenu']);
+      } else {
+        this.router.navigate(['/confignewaccount']);
+      }
     })
     .catch (error => {
       this.messageHandler.showError(error);

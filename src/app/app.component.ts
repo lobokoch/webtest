@@ -14,9 +14,11 @@ export class AppComponent {
   constructor(private router: Router) {
     //
   }
-  
-  isShowingMenu() {
-      return this.router.url !== '/login';
+
+  canShowMenu() {
+    const url = this.router.url;
+    const result = url !== '/login' && url !== '/newaccount' && url !== '/confirmaccount';
+    return result;
   }
-    
+
 }

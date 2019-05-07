@@ -1,3 +1,4 @@
+import { UserAccountService } from './account/useraccount.service';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -73,6 +74,8 @@ import { LoginComponent } from './security/login/login.component';
 import { SecurityModule } from './security/security.module';
 import { CoreModule } from './core/core.module';
 import { NewAccountComponent } from './account/newaccount/newaccount.component';
+import { ConfirmAccountComponent } from './account/confirmaccount/confirmaccount.component';
+import { ConfigNewAccountComponent } from './account/confignewaccount/confignewaccount.component';
 // Kerubin end
 
 registerLocaleData(localePt, 'pt', localeExtraPT);
@@ -122,7 +125,9 @@ const routes: Routes = [
 	{ path: 'cartaocredito', component: CartaoCreditoListComponent, canActivate: [AuthGuard] },
 	// Kerubin Begin
 
+  { path: 'confignewaccount', component: ConfigNewAccountComponent },
   { path: 'newaccount', component: NewAccountComponent },
+  { path: 'confirmaccount', component: ConfirmAccountComponent },
   { path: 'mainmenu', component: ContaPagarListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];
@@ -157,7 +162,9 @@ const routes: Routes = [
     LoginComponent,
     // Kerubin End
     AppComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    ConfirmAccountComponent,
+    ConfigNewAccountComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -198,7 +205,8 @@ const routes: Routes = [
   	BandeiraCartaoService,
   	ContaBancariaService,
   	CartaoCreditoService,
-  	KerubinClientesTranslationService,
+    KerubinClientesTranslationService,
+    UserAccountService,
 
   	// Kerubin End
 
