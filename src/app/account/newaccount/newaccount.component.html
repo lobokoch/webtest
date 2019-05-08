@@ -25,10 +25,20 @@
 
       <div class="ui-g-12">
           <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
             <input [disabled]="disabled" pInputText type="password" placeholder="Senha" #password="ngModel" ngModel [(ngModel)]="userAccount.password" name="password" required>
           </div>
           <div class="invalid-message" *ngIf="password.invalid && password.dirty">Informe a senha.</div>
+      </div>
+
+      <div class="ui-g-12">
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-share-alt"></i></span>
+              <p-dropdown id="newaccount-dropdown" required optionLabel="label" name="accountType" #accountType
+              [options]="accountTypeFieldOptions" [(ngModel)]="accountTypeSelected"
+              placeholder="Selecione o tipo da conta"></p-dropdown>
+            </div>
+            <div class="invalid-message" *ngIf="accountType.invalid && accountType.dirty">Selecione o tipo da conta.</div>
       </div>
 
       <div class="ui-g-12">

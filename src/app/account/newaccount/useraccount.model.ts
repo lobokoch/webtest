@@ -27,7 +27,8 @@ export class UserAccountListFilter extends PaginationFilter {
 export class UserAccount {
 	name: string;
 	email: string;
-	password: string;
+  password: string;
+  accountType: string;
 }
 
 export class UserAccountAutoComplete {
@@ -44,5 +45,6 @@ export class AccountCreatedDTO {
 export class SysUser {
   id: string;
   name: string;
-	email: string;
+  email: string;
+  accountType: string;
 }

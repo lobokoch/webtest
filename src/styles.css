@@ -187,6 +187,12 @@ a, button {
   transform: translateX(-100%);
 }
 
+#newaccount-dropdown .ui-dropdown {
+  width: 350px !important;
+  height: 38px !important;
+  left: -2px !important;
+}
+
 .sumField {
   font-weight: bold;
   text-align: right;

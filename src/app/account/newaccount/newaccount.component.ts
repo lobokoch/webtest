@@ -5,6 +5,7 @@ import { UserAccountService } from '../useraccount.service';
 import { UserAccount, AccountCreatedDTO } from './useraccount.model';
 import { MessageHandlerService } from 'src/app/core/message-handler.service';
 import { LogoutService } from 'src/app/security/logout.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-newaccount',
@@ -21,6 +22,9 @@ export class NewAccountComponent implements OnInit {
   disabled = false;
   touched = false;
 
+	accountTypeSelected: SelectItem;
+  accountTypeFieldOptions: SelectItem[];
+
   constructor(
     private userAccountService: UserAccountService,
     private messageHandler: MessageHandlerService,
@@ -30,11 +34,18 @@ export class NewAccountComponent implements OnInit {
 
   ngOnInit() {
     this.doLoginAnonymous();
+    this.accountTypeFieldOptions = [
+      { label: 'Pessoal, sou pessoa física', value: 'PERSONAL' },
+      { label: 'Organizacional, sou pessoa jurídica', value: 'CORPORATE' }
+    ];
   }
 
   validateAllFormFields(form: FormGroup) {
   Object.keys(form.controls).forEach(field => {
     const control = form.get(field);
+    /*if (field === 'accountTypeField' && !control.value) {
+      control.markAsTouched({ onlySelf: true });
+    }*/
     if (control instanceof FormControl) {
       // control.markAsTouched({ onlySelf: true });
       control.markAsDirty({ onlySelf: true });
@@ -44,7 +55,7 @@ export class NewAccountComponent implements OnInit {
   });
   }
 
-  createAccount(form: FormGroup/*FormControl*/) {
+  createAccount(form: FormGroup) {
     if (!form.valid) {
       this.validateAllFormFields(form);
       return;
@@ -52,6 +63,7 @@ export class NewAccountComponent implements OnInit {
 
     this.disabled = true;
     this.btnLabel = 'Criando a conta, aguarde...';
+    this.userAccount.accountType = this.accountTypeSelected.value;
     this.userAccountService.createAccount(this.userAccount)
     .then((response) => {
       this.disabled = false;
@@ -61,9 +73,16 @@ export class NewAccountComponent implements OnInit {
       this.logout.logout();
     })
     .catch((e) => {
+      console.log('Error at createAccount: ' + e);
       this.disabled = false;
       this.btnLabel = 'Erro!';
-      this.createdAccountResult = e;
+
+      if (e.message && (e.message as string).toLowerCase().indexOf('http') === -1) {
+        this.createdAccountResult = '<h3>Ocorreu um erro.</h3><p>' + e.message + '</p>';
+      } else {
+        this.createdAccountResult = '<h3>Ops :(</h3>' +
+        '<p>Ocorreu um erro inesperado ao tentar criar a conta. Por favor tente novamente mais tarde.</p>';
+      }
       this.accountCreated = true;
       this.logout.logout();
     });
