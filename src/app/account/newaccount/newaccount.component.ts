@@ -35,8 +35,8 @@ export class NewAccountComponent implements OnInit {
   ngOnInit() {
     this.doLoginAnonymous();
     this.accountTypeFieldOptions = [
-      { label: 'Pessoal, sou pessoa física', value: 'PERSONAL' },
-      { label: 'Organizacional, sou pessoa jurídica', value: 'CORPORATE' }
+      { label: 'Conta pessoal, sou pessoa física', value: 'PERSONAL' },
+      { label: 'Conta organizacional, sou pessoa jurídica', value: 'CORPORATE' }
     ];
   }
 

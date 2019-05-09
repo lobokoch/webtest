@@ -4,7 +4,8 @@
     <div class="ui-g ui-fluid">
 
       <div class="ui-g-12">
-        <h1>Vamos criar uma conta</h1>
+        <div class="primeiro-mes-gratis">Aproveite, o primeiro mês <strong>é grátis.</strong></div>
+        <div class="criar-sua-conta">Crie sua conta.</div>
       </div>
 
       <div class="ui-g-12">
@@ -33,8 +34,9 @@
 
       <div class="ui-g-12">
           <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-share-alt"></i></span>
-              <p-dropdown id="newaccount-dropdown" required optionLabel="label" name="accountType" #accountType
+              <span class="newaccount-dropdown-icon ui-inputgroup-addon"><i class="pi pi-share-alt"></i></span>
+              <p-dropdown id="newaccount-dropdown" required #accountType="ngModel" ngModel
+              optionLabel="label" name="accountType" #accountType
               [options]="accountTypeFieldOptions" [(ngModel)]="accountTypeSelected"
               placeholder="Selecione o tipo da conta"></p-dropdown>
             </div>
@@ -42,7 +44,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button class="ui-button-raised ui-button-success" style="border: 1px solid darkgreen"  pButton [disabled]="disabled"  type="submit" [label]="btnLabel"></button>
+        <button class="ui-button-raised ui-button-success" style="border: 1px solid darkgreen; font-weight: bold"  pButton [disabled]="disabled"  type="submit" [label]="btnLabel"></button>
       </div>
 
     </div>

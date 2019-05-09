@@ -187,9 +187,30 @@ a, button {
   transform: translateX(-100%);
 }
 
+.criar-sua-conta {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.primeiro-mes-gratis {
+  font-size: 1.2em;
+  background-color: orangered;
+  border: 1px solid black;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  text-align: center;
+}
+
+.newaccount-dropdown-icon {
+  z-index: 1000 !important;
+}
+
 #newaccount-dropdown .ui-dropdown {
   width: 350px !important;
-  height: 38px !important;
+  height: 39px !important;
   left: -2px !important;
 }
 
