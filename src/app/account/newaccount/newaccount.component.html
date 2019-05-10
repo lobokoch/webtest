@@ -10,7 +10,7 @@
 
       <div class="ui-g-12">
           <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <span class="ui-inputgroup-addon"><i class="pi pi-pencil"></i></span>
               <input [disabled]="disabled" pInputText type="text" placeholder="Nome completo" pInputText #name="ngModel" ngModel [(ngModel)]="userAccount.name" name="name" required>
             </div>
             <div class="invalid-message" *ngIf="name.invalid && name.dirty">Informe o nome completo.</div>
@@ -18,7 +18,7 @@
 
       <div class="ui-g-12">
           <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+              <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
               <input [disabled]="disabled" pInputText type="email" placeholder="E-mail" #email="ngModel" ngModel [(ngModel)]="userAccount.email" name="email" required>
             </div>
             <div class="invalid-message" *ngIf="email.invalid && email.dirty">Informe o e-mail.</div>
