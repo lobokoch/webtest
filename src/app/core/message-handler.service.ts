@@ -52,6 +52,9 @@ export class MessageHandlerService {
       }
     }
 
+    if (message && message.indexOf('rio inexistente ou senha inv') !== -1) {
+      message = 'Usuário inexistente ou senha inválida.';
+    }
     this.messageService.add({severity: 'error', summary: 'Erro', detail: message});
     console.log('Ocorreu um erro:' + errorResponse);
   }

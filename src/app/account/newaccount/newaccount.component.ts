@@ -6,6 +6,7 @@ import { UserAccount, AccountCreatedDTO } from './useraccount.model';
 import { MessageHandlerService } from 'src/app/core/message-handler.service';
 import { LogoutService } from 'src/app/security/logout.service';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newaccount',
@@ -29,7 +30,8 @@ export class NewAccountComponent implements OnInit {
     private userAccountService: UserAccountService,
     private messageHandler: MessageHandlerService,
     private auth: AuthService,
-    private logout: LogoutService
+    private logout: LogoutService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -99,6 +101,17 @@ export class NewAccountComponent implements OnInit {
       this.messageHandler.showError(e);
     });
   }
+
+  goBack() {
+    this.logout.logout()
+    .then(() => {
+      this.router.navigate(['/mainmenu']);
+    })
+    .catch(() => {
+      this.router.navigate(['/mainmenu']);
+    } );
+  }
+
 
   /*private doLoginAnonymous() {
     const username = 'anonymous@kerubin.com.br';

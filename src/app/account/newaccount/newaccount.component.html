@@ -59,7 +59,7 @@
   </div>
 
   <div class="ui-g-12 ui-fluid ui-md-3">
-    <a routerLink="/mainmenu" *ngIf="!disabled" pButton style="border: 1px solid silver" class="ui-button-secondary" label="Voltar"></a>
+    <a (click)="goBack()" *ngIf="!disabled" pButton style="border: 1px solid silver" class="ui-button-secondary" label="Voltar"></a>
   </div>
 
 </div>

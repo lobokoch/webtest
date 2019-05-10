@@ -29,6 +29,7 @@ import {SpinnerModule} from 'primeng/spinner';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
+import {CardModule} from 'primeng/card';
 
 // CurrencyMask
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -192,6 +193,7 @@ const routes: Routes = [
     SelectButtonModule,
     DialogModule,
     DropdownModule,
+    CardModule,
 
     CoreModule,
     SecurityModule
