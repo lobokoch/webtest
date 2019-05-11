@@ -72,7 +72,6 @@ export class ConfirmAccountComponent implements OnInit {
     .catch((e) => {
       this.connected = false;
       console.log('Anonymous error: ' + e);
-      // this.messageHandler.showError(e);
     });
   }
 

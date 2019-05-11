@@ -17,10 +17,10 @@ export class LogoutService {
 
   logout() {
     return this.http.delete(this.tokensRevokeUrl, { withCredentials: true })
-    .toPromise()
-    .then(() => {
-      this.auth.cleanAccessToken();
-    });
+      .toPromise()
+      .then(() => {
+        this.auth.cleanAccessToken();
+      });
   }
 
 

@@ -1,49 +1,50 @@
 <section>
-    <article>
+  <article>
     <!--{{ auth.jwtPayload | json }}-->
 
     <p-card [style]="{width: '360px', height: '350px'}" styleClass="ui-card-shadow">
-    <form #loginForm="ngForm">
-      <div class="ui-g ui-fluid">
+      <form #loginForm="ngForm">
+        <div class="ui-g ui-fluid">
 
-        <div class="ui-g-12">
-          <div class="kb-login-title">Acessar o Kerubin</div>
-        </div>
+          <div class="ui-g-12">
+            <div class="kb-login-title">Acessar o Kerubin</div>
+          </div>
 
-        <div class="ui-g-12">
+          <div class="ui-g-12">
             <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input pInputText type="email" name="username" placeholder="Seu e-mail" ngModel required #username>
+              <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input pInputText type="email" name="username" placeholder="Seu e-mail" ngModel required #username>
             </div>
-        </div>
+          </div>
 
-        <div class="ui-g-12">
+          <div class="ui-g-12">
             <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+              <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
               <input pInputText type="password" name="password" placeholder="Sua senha" ngModel required #password>
             </div>
-        </div>
-
-        <div class="ui-g-12">
-          <button pButton style="font-weight: bold; border: 1px solid black; height: 150%" type="submit" label="Entrar"
-
-            (click)="login(username.value, password.value); password.value = '';">
-          </button>
-        </div>
-
-        <div style="margin-top: 20px" class="ui-g-12">
-          <div class="ui-g-12 ui-fluid ui-md-6">
-            <a routerLink="/newaccount" pButton style="font-weight: bold; border: 1px solid darkgreen" class="ui-button-success" label="Criar uma conta"></a>
           </div>
 
-          <div class="ui-g-12 ui-fluid ui-md-6">
-            <a routerLink="/mainmenu" pButton style="border: 1px solid silver" class="ui-button-secondary" label="Esqueci a senha"></a>
+          <div class="ui-g-12">
+            <button pButton style="font-weight: bold; border: 1px solid black; height: 150%" type="submit"
+              label="Entrar" (click)="login(username.value, password.value); password.value = '';">
+            </button>
           </div>
-        </div>
 
-      </div>
-    </form>
-  </p-card>
+          <div style="margin-top: 20px" class="ui-g-12">
+            <div class="ui-g-12 ui-fluid ui-md-6">
+              <a routerLink="/newaccount" pButton style="font-weight: bold; border: 1px solid darkgreen"
+                class="ui-button-success" label="Criar uma conta"></a>
+            </div>
+
+            <div class="ui-g-12 ui-fluid ui-md-6">
+              <a routerLink="/mainmenu" pButton style="border: 1px solid silver" class="ui-button-secondary"
+                label="Esqueci a senha"></a>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </p-card>
 
   </article>
-  </section>
+</section>
