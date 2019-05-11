@@ -84,19 +84,19 @@ export class AuthService {
       // this.jwtPayload = null;
     }
   }
-
+  
   public doLoginAnonymous(): Promise<boolean> {
-    const username = 'anonymous@kerubin.com.br';
-    const password = 'Kerubin_Anonymous@!1';
-    return this.login(username, password)
-    .then(() => {
-      console.log('Anonymous login success!');
-      return true;
-    })
-    .catch (e => {
-      console.log('Anonymous login failed: ' + e);
-      return false;
-    });
-  }
+      const username = 'anonymous@kerubin.com.br';
+      const password = 'Kerubin_Anonymous@!1';
+      return this.login(username, password)
+      .then(() => {
+        console.log('Anonymous login success!');
+        return true;
+      })
+      .catch (e => {
+        console.log('Anonymous login failed: ' + e);
+        return false;
+      });
+ }
 
 }

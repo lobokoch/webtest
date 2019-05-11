@@ -6,28 +6,31 @@
 		</div>
 		
 		<!-- Begin Filters -->
-		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
-		
-			<div class="ui-g">
-				<div class="ui-g-12">
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
+			
+				<div class="ui-g">
+					<div class="ui-g-12">
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Nome do fornecedor</label>
+							<p-autoComplete name="fornecedorNomeAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="fornecedorListFilter.nome" [multiple]="true"
+							[suggestions]="fornecedorNomeAutoCompleteSuggestions"
+							(completeMethod)="fornecedorNomeAutoComplete($event)"
+							field="nome"></p-autoComplete>
+						</div>
+					</div>
 					
-					<div class="ui-g-12 ui-md-12 ui-fluid">
-						<label class="label-r">Nome do fornecedor</label>
-						<p-autoComplete name="fornecedorNomeAutoComplete" 
-						placeholder="Digite para pesquisar..." [dropdown]="true" 
-						[(ngModel)]="fornecedorListFilter.nome" [multiple]="true"
-						[suggestions]="fornecedorNomeAutoCompleteSuggestions"
-						(completeMethod)="fornecedorNomeAutoComplete($event)"
-						field="nome"></p-autoComplete>
+					<div>
+						<p-button label="Pesquisar" (click)="fornecedorFilterSearch()"></p-button>
 					</div>
 				</div>
-			</div>
+				
 			
-			<p-footer>
-				<p-button label="Pesquisar" (click)="fornecedorFilterSearch()"></p-button>
-			</p-footer>
-		
-		</p-panel>
+			</p-accordionTab>
+		</p-accordion>
 		<!-- End Filters -->
 		
 		<!-- Begin GRID -->

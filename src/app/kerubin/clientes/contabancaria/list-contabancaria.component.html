@@ -6,28 +6,31 @@
 		</div>
 		
 		<!-- Begin Filters -->
-		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
-		
-			<div class="ui-g">
-				<div class="ui-g-12">
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
+			
+				<div class="ui-g">
+					<div class="ui-g-12">
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Número da(s) conta(s)</label>
+							<p-autoComplete name="contaBancariaNumeroContaAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="contaBancariaListFilter.numeroConta" [multiple]="true"
+							[suggestions]="contaBancariaNumeroContaAutoCompleteSuggestions"
+							(completeMethod)="contaBancariaNumeroContaAutoComplete($event)"
+							field="numeroConta"></p-autoComplete>
+						</div>
+					</div>
 					
-					<div class="ui-g-12 ui-md-12 ui-fluid">
-						<label class="label-r">Número da(s) conta(s)</label>
-						<p-autoComplete name="contaBancariaNumeroContaAutoComplete" 
-						placeholder="Digite para pesquisar..." [dropdown]="true" 
-						[(ngModel)]="contaBancariaListFilter.numeroConta" [multiple]="true"
-						[suggestions]="contaBancariaNumeroContaAutoCompleteSuggestions"
-						(completeMethod)="contaBancariaNumeroContaAutoComplete($event)"
-						field="numeroConta"></p-autoComplete>
+					<div>
+						<p-button label="Pesquisar" (click)="contaBancariaFilterSearch()"></p-button>
 					</div>
 				</div>
-			</div>
+				
 			
-			<p-footer>
-				<p-button label="Pesquisar" (click)="contaBancariaFilterSearch()"></p-button>
-			</p-footer>
-		
-		</p-panel>
+			</p-accordionTab>
+		</p-accordion>
 		<!-- End Filters -->
 		
 		<!-- Begin GRID -->

@@ -1,4 +1,3 @@
-import { UserAccountService } from './account/useraccount.service';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +29,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
+
 
 // CurrencyMask
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -77,6 +77,9 @@ import { CoreModule } from './core/core.module';
 import { NewAccountComponent } from './account/newaccount/newaccount.component';
 import { ConfirmAccountComponent } from './account/confirmaccount/confirmaccount.component';
 import { ConfigNewAccountComponent } from './account/confignewaccount/confignewaccount.component';
+import { UserAccountService } from './account/useraccount.service';
+import { FocusDirective } from './directive/focus.directive';
+
 // Kerubin end
 
 registerLocaleData(localePt, 'pt', localeExtraPT);
@@ -94,43 +97,43 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-
+  
 	// Kerubin Begin
-
+	
 	{ path: 'contapagar/novo', component: ContaPagarComponent, canActivate: [AuthGuard] },
 	{ path: 'contapagar/:id', component: ContaPagarComponent, canActivate: [AuthGuard] },
 	{ path: 'contapagar', component: ContaPagarListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'fornecedor/novo', component: FornecedorComponent, canActivate: [AuthGuard] },
 	{ path: 'fornecedor/:id', component: FornecedorComponent, canActivate: [AuthGuard] },
 	{ path: 'fornecedor', component: FornecedorListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'banco/novo', component: BancoComponent, canActivate: [AuthGuard] },
 	{ path: 'banco/:id', component: BancoComponent, canActivate: [AuthGuard] },
 	{ path: 'banco', component: BancoListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'agenciabancaria/novo', component: AgenciaBancariaComponent, canActivate: [AuthGuard] },
 	{ path: 'agenciabancaria/:id', component: AgenciaBancariaComponent, canActivate: [AuthGuard] },
 	{ path: 'agenciabancaria', component: AgenciaBancariaListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'bandeiracartao/novo', component: BandeiraCartaoComponent, canActivate: [AuthGuard] },
 	{ path: 'bandeiracartao/:id', component: BandeiraCartaoComponent, canActivate: [AuthGuard] },
 	{ path: 'bandeiracartao', component: BandeiraCartaoListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'contabancaria/novo', component: ContaBancariaComponent, canActivate: [AuthGuard] },
 	{ path: 'contabancaria/:id', component: ContaBancariaComponent, canActivate: [AuthGuard] },
 	{ path: 'contabancaria', component: ContaBancariaListComponent, canActivate: [AuthGuard] },
-
+	
 	{ path: 'cartaocredito/novo', component: CartaoCreditoComponent, canActivate: [AuthGuard] },
 	{ path: 'cartaocredito/:id', component: CartaoCreditoComponent, canActivate: [AuthGuard] },
 	{ path: 'cartaocredito', component: CartaoCreditoListComponent, canActivate: [AuthGuard] },
 	// Kerubin Begin
-
+  
+  { path: 'mainmenu', component: ContaPagarListComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'confignewaccount', component: ConfigNewAccountComponent },
   { path: 'newaccount', component: NewAccountComponent },
-  { path: 'confirmaccount', component: ConfirmAccountComponent },
-  { path: 'mainmenu', component: ContaPagarListComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent }
+  { path: 'confirmaccount', component: ConfirmAccountComponent }
 ];
 
 
@@ -138,34 +141,36 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     // Kerubin Begin
-
+    
     ContaPagarComponent,
     ContaPagarListComponent,
-
+    
     FornecedorComponent,
     FornecedorListComponent,
-
+    
     BancoComponent,
     BancoListComponent,
-
+    
     AgenciaBancariaComponent,
     AgenciaBancariaListComponent,
-
+    
     BandeiraCartaoComponent,
     BandeiraCartaoListComponent,
-
+    
     ContaBancariaComponent,
     ContaBancariaListComponent,
-
+    
     CartaoCreditoComponent,
     CartaoCreditoListComponent,
     NavbarComponent,
     LoginComponent,
-    // Kerubin End
-    AppComponent,
     NewAccountComponent,
     ConfirmAccountComponent,
-    ConfigNewAccountComponent
+    ConfigNewAccountComponent,
+    FocusDirective,
+    // Kerubin End
+    
+    AppComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -194,7 +199,7 @@ const routes: Routes = [
     DialogModule,
     DropdownModule,
     CardModule,
-
+    
     CoreModule,
     SecurityModule
   ],
@@ -207,11 +212,10 @@ const routes: Routes = [
   	BandeiraCartaoService,
   	ContaBancariaService,
   	CartaoCreditoService,
-    KerubinClientesTranslationService,
-    UserAccountService,
-
+  	KerubinClientesTranslationService,
+  	UserAccountService,
   	// Kerubin End
-
+  	
     MessageService,
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt' },

@@ -6,78 +6,81 @@
 		</div>
 		
 		<!-- Begin Filters -->
-		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
-		
-			<div class="ui-g">
-				<div class="ui-g-12">
-					
-					<div class="ui-g-12 ui-md-12 ui-fluid">
-						<label class="label-r">Contas</label>
-						<p-autoComplete name="contaPagarDescricaoAutoComplete" 
-						placeholder="Digite para pesquisar..." [dropdown]="true" 
-						[(ngModel)]="contaPagarListFilter.descricao" [multiple]="true"
-						[suggestions]="contaPagarDescricaoAutoCompleteSuggestions"
-						(completeMethod)="contaPagarDescricaoAutoComplete($event)"
-						field="descricao"></p-autoComplete>
-					</div>
-					
-					
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
+			
+				<div class="ui-g">
 					<div class="ui-g-12">
-					
-					    <div class="ui-g-12 ui-md-2 ui-fluid">
-					        <label style="display: block">Intervalo de tempo</label>
-					        <p-dropdown #contaPagarDataVencimentoIsBetweenOptions 
-						        [options]="dateFilterIntervalDropdownItems" 
-						        [(ngModel)]="contaPagarDataVencimentoIsBetweenOptionsSelected"
-						        optionLabel="label" (click)="contaPagarDataVencimentoIsBetweenOptionsOnClick(contaPagarDataVencimentoIsBetweenOptions)">
-					        </p-dropdown>
-					    </div>
-					
-					    <div class="ui-g-12 ui-md-2 ui-fluid">
-					      	<label class="label-r">Vencimento de</label>
-					        <p-calendar name="dataVencimentoFrom"
-					        dateFormat="dd/mm/yy" [(ngModel)]="contaPagarListFilter.dataVencimentoFrom"></p-calendar>
-					    </div>
-					
-					    <div class="ui-g-12 ui-md-2 ui-fluid">
-					        <label class="label-l label-r">Até</label>
-					        <p-calendar name="dataVencimentoTo" dateFormat="dd/mm/yy"
-					        [(ngModel)]="contaPagarListFilter.dataVencimentoTo"></p-calendar>
-					    </div>
-					    
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Contas</label>
+							<p-autoComplete name="contaPagarDescricaoAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="contaPagarListFilter.descricao" [multiple]="true"
+							[suggestions]="contaPagarDescricaoAutoCompleteSuggestions"
+							(completeMethod)="contaPagarDescricaoAutoComplete($event)"
+							field="descricao"></p-autoComplete>
+						</div>
+						
+						
+						<div class="ui-g-12">
+						
+						    <div class="ui-g-12 ui-md-2 ui-fluid">
+						        <label style="display: block">Intervalo de tempo</label>
+						        <p-dropdown #contaPagarDataVencimentoIsBetweenOptions 
+							        [options]="dateFilterIntervalDropdownItems" 
+							        [(ngModel)]="contaPagarDataVencimentoIsBetweenOptionsSelected"
+							        optionLabel="label" (click)="contaPagarDataVencimentoIsBetweenOptionsOnClick(contaPagarDataVencimentoIsBetweenOptions)">
+						        </p-dropdown>
+						    </div>
+						
+						    <div class="ui-g-12 ui-md-2 ui-fluid">
+						      	<label class="label-r">Vencimento de</label>
+						        <p-calendar name="dataVencimentoFrom"
+						        dateFormat="dd/mm/yy" [(ngModel)]="contaPagarListFilter.dataVencimentoFrom"></p-calendar>
+						    </div>
+						
+						    <div class="ui-g-12 ui-md-2 ui-fluid">
+						        <label class="label-l label-r">Até</label>
+						        <p-calendar name="dataVencimentoTo" dateFormat="dd/mm/yy"
+						        [(ngModel)]="contaPagarListFilter.dataVencimentoTo"></p-calendar>
+						    </div>
+						    
+						</div>
+						
+						
+						
+						<div class="ui-g-12 ui-md-2 ui-fluid">
+							<label style="display: block" class="label-l label-r">Pagas</label>
+							<p-inputSwitch [(ngModel)]="contaPagarListFilter.dataPagamentoIsNotNull"></p-inputSwitch>
+						</div>
+						
+						
+						<div class="ui-g-12 ui-md-2 ui-fluid">
+							<label style="display: block" class="label-l label-r">Em aberto</label>
+							<p-inputSwitch [(ngModel)]="contaPagarListFilter.dataPagamentoIsNull"></p-inputSwitch>
+						</div>
+						
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Agrupador:</label>
+							<p-autoComplete name="contaPagarAgrupadorAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="contaPagarListFilter.agrupador" [multiple]="true"
+							[suggestions]="contaPagarAgrupadorAutoCompleteSuggestions"
+							(completeMethod)="contaPagarAgrupadorAutoComplete($event)"
+							field="agrupador"></p-autoComplete>
+						</div>
 					</div>
 					
-					
-					
-					<div class="ui-g-12 ui-md-2 ui-fluid">
-						<label style="display: block" class="label-l label-r">Pagas</label>
-						<p-inputSwitch [(ngModel)]="contaPagarListFilter.dataPagamentoIsNotNull"></p-inputSwitch>
-					</div>
-					
-					
-					<div class="ui-g-12 ui-md-2 ui-fluid">
-						<label style="display: block" class="label-l label-r">Em aberto</label>
-						<p-inputSwitch [(ngModel)]="contaPagarListFilter.dataPagamentoIsNull"></p-inputSwitch>
-					</div>
-					
-					
-					<div class="ui-g-12 ui-md-12 ui-fluid">
-						<label class="label-r">Agrupador:</label>
-						<p-autoComplete name="contaPagarAgrupadorAutoComplete" 
-						placeholder="Digite para pesquisar..." [dropdown]="true" 
-						[(ngModel)]="contaPagarListFilter.agrupador" [multiple]="true"
-						[suggestions]="contaPagarAgrupadorAutoCompleteSuggestions"
-						(completeMethod)="contaPagarAgrupadorAutoComplete($event)"
-						field="agrupador"></p-autoComplete>
+					<div>
+						<p-button label="Pesquisar" (click)="contaPagarFilterSearch()"></p-button>
 					</div>
 				</div>
-			</div>
+				
 			
-			<p-footer>
-				<p-button label="Pesquisar" (click)="contaPagarFilterSearch()"></p-button>
-			</p-footer>
-		
-		</p-panel>
+			</p-accordionTab>
+		</p-accordion>
 		<!-- End Filters -->
 		
 		<!-- Begin GRID -->

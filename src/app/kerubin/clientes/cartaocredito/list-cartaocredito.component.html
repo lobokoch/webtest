@@ -6,18 +6,21 @@
 		</div>
 		
 		<!-- Begin Filters -->
-		<p-panel class="ui-g-12" header="Filtro"  [toggleable]="true" [collapsed]="true">
-		
-			<div class="ui-g">
-				<div class="ui-g-12">
-				</div>
-			</div>
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
 			
-			<p-footer>
-				<p-button label="Pesquisar" (click)="cartaoCreditoFilterSearch()"></p-button>
-			</p-footer>
-		
-		</p-panel>
+				<div class="ui-g">
+					<div class="ui-g-12">
+					</div>
+					
+					<div>
+						<p-button label="Pesquisar" (click)="cartaoCreditoFilterSearch()"></p-button>
+					</div>
+				</div>
+				
+			
+			</p-accordionTab>
+		</p-accordion>
 		<!-- End Filters -->
 		
 		<!-- Begin GRID -->
