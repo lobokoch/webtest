@@ -1,0 +1,151 @@
+<div class="container">
+
+  	<div class="ui-g">
+		<div>
+			<h1>{{ getTranslation('financeiro.plano_contas.planoConta') }}</h1>
+		</div>
+		
+		<!-- Begin Filters -->
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
+			
+				<div class="ui-g">
+					<div class="ui-g-12">
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Códigos</label>
+							<p-autoComplete name="planoContaCodigoAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="planoContaListFilter.codigo" [multiple]="true"
+							[suggestions]="planoContaCodigoAutoCompleteSuggestions"
+							(completeMethod)="planoContaCodigoAutoComplete($event)"
+							field="codigo"></p-autoComplete>
+						</div>
+						
+						<div class="ui-g-12 ui-md-12 ui-fluid">
+							<label class="label-r">Descrições</label>
+							<p-autoComplete name="planoContaDescricaoAutoComplete" 
+							placeholder="Digite para pesquisar..." [dropdown]="true" 
+							[(ngModel)]="planoContaListFilter.descricao" [multiple]="true"
+							[suggestions]="planoContaDescricaoAutoCompleteSuggestions"
+							(completeMethod)="planoContaDescricaoAutoComplete($event)"
+							field="descricao"></p-autoComplete>
+						</div>
+						
+						
+						<div class="ui-g-12 ui-md-2 ui-fluid">
+							<label style="display: block" class="label-l label-r">Ativo</label>
+							<p-inputSwitch [(ngModel)]="planoContaListFilter.ativoIsNotNull"></p-inputSwitch>
+						</div>
+						
+						
+						<div class="ui-g-12 ui-md-2 ui-fluid">
+							<label style="display: block" class="label-l label-r">Inativo</label>
+							<p-inputSwitch [(ngModel)]="planoContaListFilter.ativoIsNull"></p-inputSwitch>
+						</div>
+						
+					</div>
+					
+					<div>
+						<p-button label="Pesquisar" (click)="planoContaFilterSearch()"></p-button>
+					</div>
+				</div>
+				
+			
+			</p-accordionTab>
+		</p-accordion>
+		<!-- End Filters -->
+		
+		<!-- Begin GRID -->
+		<div class="ui-g-12" name="data-grid">
+			<p-table selectionMode="single" [loading]="loading" [responsive]="true" [customSort]="true" [paginator]="true" 
+				[value]="planoContaListItems"
+			    [rows]="planoContaListFilter.pageSize" 
+			    [totalRecords]="planoContaListTotalElements"
+			    [lazy]="true" (onLazyLoad)="planoContaListOnLazyLoad($event)" >
+			    
+			    <ng-template pTemplate="header">
+		            <tr>
+		            	<th [pSortableColumn]="'codigo'">{{ getTranslation('financeiro.plano_contas.planoConta_codigo_grid') }}<p-sortIcon [field]="'codigo'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'descricao'">{{ getTranslation('financeiro.plano_contas.planoConta_descricao_grid') }}<p-sortIcon [field]="'descricao'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'tipoFinanceiro'">{{ getTranslation('financeiro.plano_contas.planoConta_tipoFinanceiro_grid') }}<p-sortIcon [field]="'tipoFinanceiro'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'tipoReceitaDespesa'">{{ getTranslation('financeiro.plano_contas.planoConta_tipoReceitaDespesa_grid') }}<p-sortIcon [field]="'tipoReceitaDespesa'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'planoContaPai'">{{ getTranslation('financeiro.plano_contas.planoConta_planoContaPai_grid') }}<p-sortIcon [field]="'planoContaPai'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'ativo'">{{ getTranslation('financeiro.plano_contas.planoConta_ativo_grid') }}<p-sortIcon [field]="'ativo'"></p-sortIcon></th>
+						<th style="width: 12em">Ações</th>
+		            </tr>
+		        </ng-template>
+		        
+			    <ng-template pTemplate="body" let-planoConta>
+		            <tr [pSelectableRow]="planoConta">
+		            	<td>
+		            		{{planoConta?.codigo}}
+		            	</td>
+		            	<td>
+		            		{{planoConta?.descricao}}
+		            	</td>
+		            	<td>
+		            		{{ getTranslation('financeiro.plano_contas.planoConta_tipoFinanceiro' + '_' + planoConta?.tipoFinanceiro?.toLowerCase()) }}
+		            	</td>
+		            	<td>
+		            		{{ getTranslation('financeiro.plano_contas.planoConta_tipoReceitaDespesa' + '_' + planoConta?.tipoReceitaDespesa?.toLowerCase()) }}
+		            	</td>
+		            	<td>
+		            		{{planoContaPlanoContaPaiAutoCompleteFieldConverter(planoConta?.planoContaPai)}}
+		            	</td>
+		            	<td>
+		            		{{planoConta?.ativo? 'Sim': 'Não' }}
+		            	</td>
+		              	<td class="kb-actions">
+		              		<a pButton [routerLink]="['/planoconta', planoConta.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+		              		<!-- <button (click)="mostrarPagarConta(planoConta)" pButton icon="pi pi-money"  pTooltip="Pagar esta conta" tooltipPosition="top"></button> -->
+		              		<button (click)="deletePlanoConta(planoConta)" pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"></button>
+		              	</td>
+		            </tr>
+		        </ng-template>
+		        
+		        
+		        <ng-template pTemplate="emptymessage" let-columns>
+				    <tr>
+				        <td [attr.colspan]="7">
+				            Nenhum registro encontrado.
+				        </td>
+				    </tr>
+				</ng-template>
+				
+			</p-table>
+		</div>
+		<!-- End GRID -->
+		
+		<div class="ui-g-12">
+			<a routerLink="/planoconta/novo" pButton label="Novo registro"></a>
+		</div>
+		
+		<!-- Begin Extras
+		
+		<p-dialog header="Pagar conta" [(visible)]="mostrarDialogPagarConta" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70"
+		        [maximizable]="false" [baseZIndex]="10000">
+		      <div>
+		          <div>Conta: <strong>{{ contaPagar.descricao }}</strong></div>
+		          <div>
+		              <label style="display: block">Valor pago</label>
+		              <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+		              [(ngModel)]="contaPagar.valorPago" pInputText type="text" name="contaPagarValorPago" ngModel placeholder="0,00">
+		          </div>
+		          <div>
+		              <label style="display: block">Data pagamento</label>
+		              <p-calendar name="contaPagarDataPagamento" dateFormat="dd/mm/yy"
+		              [inline]="false" [readonlyInput]="false" [showIcon]="false"
+		               [(ngModel)]="contaPagar.dataPagamento" ngModel></p-calendar>
+		          </div>
+		      </div>
+		        <p-footer>
+		            <button type="button" pButton icon="pi pi-check" (click)="executarPagarConta()" label="Pagar"></button>
+		            <button type="button" pButton icon="pi pi-close" (click)="cancelarPagarConta()" label="Cancelar" class="ui-button-secondary"></button>
+		        </p-footer>
+		</p-dialog>
+		
+		End Extras -->
+	</div>
+  
+</div>

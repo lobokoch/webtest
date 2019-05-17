@@ -2,7 +2,7 @@
 
   <form #form1="ngForm" (ngSubmit)="save(form1)">
   	<div class="ui-g">
-  	
+
 		<div class="ui-g-12">
 			<h1>{{ getTranslation('kerubin.clientes.contaBancaria') }}</h1>
 		</div>
@@ -10,61 +10,66 @@
 			<label for="id" class="hidden">{{ getTranslation('kerubin.clientes.contaBancaria_id') }}</label>
 			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="contaBancaria.id" name="id" readonly class="read-only">
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="titular">{{ getTranslation('kerubin.clientes.contaBancaria_titular') }}</label>
 			<input type="text" pInputText #titular="ngModel" ngModel [(ngModel)]="contaBancaria.titular" name="titular" required>
 			<div class="invalid-message" *ngIf="titular.invalid && titular.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="agencia">{{ getTranslation('kerubin.clientes.contaBancaria_agencia') }}</label>
-			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaBancariaAgenciaAutoCompleteSuggestions" (completeMethod)="contaBancariaAgenciaAutoComplete($event)" (onClear)="contaBancariaAgenciaAutoCompleteClear($event)" [field]="contaBancariaAgenciaAutoCompleteFieldConverter" #agencia="ngModel" ngModel [(ngModel)]="contaBancaria.agencia" name="agencia" required>
+      <p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true"
+      [suggestions]="contaBancariaAgenciaAutoCompleteSuggestions"
+      (completeMethod)="contaBancariaAgenciaAutoComplete($event)"
+      (onClear)="contaBancariaAgenciaAutoCompleteClear($event)"
+      [field]="contaBancariaAgenciaAutoCompleteFieldConverter"
+      #agencia="ngModel" ngModel [(ngModel)]="contaBancaria.agencia" name="agencia" required>
 				<ng-template let-agencia pTemplate="item">
 											<div class="ui-helper-clearfix">{{ contaBancariaAgenciaAutoCompleteFieldConverter(agencia) }}</div>
 				</ng-template>
 			</p-autoComplete>
 			<div class="invalid-message" *ngIf="agencia.invalid && agencia.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="tipoContaBancaria">{{ getTranslation('kerubin.clientes.contaBancaria_tipoContaBancaria') }}</label>
 			<p-dropdown [options]="contaBancariaTipoContaBancariaOptions" placeholder="Selecione" #tipoContaBancaria="ngModel" ngModel [(ngModel)]="contaBancaria.tipoContaBancaria" name="tipoContaBancaria" required></p-dropdown>
 			<div class="invalid-message" *ngIf="tipoContaBancaria.invalid && tipoContaBancaria.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="numeroConta">{{ getTranslation('kerubin.clientes.contaBancaria_numeroConta') }}</label>
 			<input type="text" pInputText #numeroConta="ngModel" ngModel [(ngModel)]="contaBancaria.numeroConta" name="numeroConta" required>
 			<div class="invalid-message" *ngIf="numeroConta.invalid && numeroConta.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="digito">{{ getTranslation('kerubin.clientes.contaBancaria_digito') }}</label>
 			<input type="text" pInputText #digito="ngModel" ngModel [(ngModel)]="contaBancaria.digito" name="digito">
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="saldo">{{ getTranslation('kerubin.clientes.contaBancaria_saldo') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #saldo="ngModel" ngModel [(ngModel)]="contaBancaria.saldo" name="saldo">
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-8">
 			<label for="numeroCartao">{{ getTranslation('kerubin.clientes.contaBancaria_numeroCartao') }}</label>
 			<input type="text" pInputText #numeroCartao="ngModel" ngModel [(ngModel)]="contaBancaria.numeroCartao" name="numeroCartao">
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="codigoSeguranca">{{ getTranslation('kerubin.clientes.contaBancaria_codigoSeguranca') }}</label>
 			<input type="text" pInputText #codigoSeguranca="ngModel" ngModel [(ngModel)]="contaBancaria.codigoSeguranca" name="codigoSeguranca">
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="validade">{{ getTranslation('kerubin.clientes.contaBancaria_validade') }}</label>
 			<p-calendar dateFormat="dd/mm/yy" #validade="ngModel" ngModel [(ngModel)]="contaBancaria.validade" name="validade" required></p-calendar>
 			<div class="invalid-message" *ngIf="validade.invalid && validade.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-8">
 			<label for="bandeiraCartao">{{ getTranslation('kerubin.clientes.contaBancaria_bandeiraCartao') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaBancariaBandeiraCartaoAutoCompleteSuggestions" (completeMethod)="contaBancariaBandeiraCartaoAutoComplete($event)" (onClear)="contaBancariaBandeiraCartaoAutoCompleteClear($event)" [field]="contaBancariaBandeiraCartaoAutoCompleteFieldConverter" #bandeiraCartao="ngModel" ngModel [(ngModel)]="contaBancaria.bandeiraCartao" name="bandeiraCartao" required>
@@ -74,13 +79,13 @@
 			</p-autoComplete>
 			<div class="invalid-message" *ngIf="bandeiraCartao.invalid && bandeiraCartao.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label style="display: block" for="ativo">{{ getTranslation('kerubin.clientes.contaBancaria_ativo') }}</label>
 			<p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="contaBancaria.ativo" name="ativo" required></p-inputSwitch>
 			<div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
 		</div>
-		
+
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-md-4">
 				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
@@ -88,9 +93,9 @@
 				<a routerLink="/contabancaria" pButton label="Pesquisar"></a>
 			</div>
 		</div>
-		
-	
+
+
 	</div>
   </form>
-  
+
 </div>

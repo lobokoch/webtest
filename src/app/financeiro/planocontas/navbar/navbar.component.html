@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="ui-g">
+      <div class="i-g-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="isMenuShowing = !isMenuShowing"><i class="pi pi-bars"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!isMenuShowing">
+    <li class="navbar-user">{{ getCurrentUserName() }}</li>
+    
+    <!-- Begin Menu Items -->
+    <!-- Begin financeiro.plano_contas menu itens -->
+    <li class="navbar-menuitem" routerLinkActive="active"><a routerLink="/planoconta">Plano de Contas</a></li>
+    <!-- End financeiro.plano_contas menu itens -->
+    
+    <!-- End Menu Items -->
+    
+    <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
+  </ul>
+
+</nav>

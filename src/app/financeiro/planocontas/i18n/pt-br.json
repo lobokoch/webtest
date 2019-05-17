@@ -1,0 +1,22 @@
+{
+	"financeiro.plano_contas.planoConta": "Plano de Contas",
+	"financeiro.plano_contas.planoConta_id": "#id",
+	"financeiro.plano_contas.planoConta_id_grid": "#id",
+	"financeiro.plano_contas.planoConta_codigo": "Código",
+	"financeiro.plano_contas.planoConta_codigo_grid": "Código",
+	"financeiro.plano_contas.planoConta_descricao": "Descrição",
+	"financeiro.plano_contas.planoConta_descricao_grid": "Descrição",
+	"financeiro.plano_contas.planoConta_tipoFinanceiro": "Tipo Financeiro",
+	"financeiro.plano_contas.planoConta_tipoFinanceiro_grid": "Tipo Financeiro",
+	"financeiro.plano_contas.planoConta_tipoFinanceiro_receita": "Receita",
+	"financeiro.plano_contas.planoConta_tipoFinanceiro_despesa": "Despesa",
+	"financeiro.plano_contas.planoConta_tipoReceitaDespesa": "Tipo Receita/Despesa",
+	"financeiro.plano_contas.planoConta_tipoReceitaDespesa_grid": "Tipo Receita/Despesa",
+	"financeiro.plano_contas.planoConta_tipoReceitaDespesa_fixo": "Fixa",
+	"financeiro.plano_contas.planoConta_tipoReceitaDespesa_variavel": "Variável",
+	"financeiro.plano_contas.planoConta_tipoReceitaDespesa_null": "",
+	"financeiro.plano_contas.planoConta_planoContaPai": "Plano de Conta Pai",
+	"financeiro.plano_contas.planoConta_planoContaPai_grid": "Plano de Conta Pai",
+	"financeiro.plano_contas.planoConta_ativo": "Ativo",
+	"financeiro.plano_contas.planoConta_ativo_grid": "Ativo"
+}
