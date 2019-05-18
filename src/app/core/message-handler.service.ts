@@ -33,7 +33,7 @@ export class MessageHandlerService {
 
     if (typeof errorResponse === 'string') {
       message = errorResponse;
-    } else if (errorIsResponse && errorResponse.status >= 400 && errorResponse.status <= 499) {
+    } else if (errorIsResponse && errorResponse.status >= 400 && errorResponse.status <= /*499*/ 500) {
       try {
 
         if (errorResponse.error) {

@@ -46,7 +46,7 @@
               <div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
             </div>
 
-            <div class="ui-g-12 ui-fluid ui-md-2">
+            <div class="ui-g-12 ui-fluid ui-md-5">
               <label
                 for="tipoFinanceiro">{{ getTranslation('financeiro.plano_contas.planoConta_tipoFinanceiro') }}</label>
               <p-dropdown [options]="planoContaTipoFinanceiroOptions" placeholder="Selecione" #tipoFinanceiro="ngModel"
@@ -55,7 +55,7 @@
               </div>
             </div>
 
-            <div class="ui-g-12 ui-fluid ui-md-2">
+            <div class="ui-g-12 ui-fluid ui-md-5">
               <label
                 for="tipoReceitaDespesa">{{ getTranslation('financeiro.plano_contas.planoConta_tipoReceitaDespesa') }}</label>
               <p-dropdown [options]="planoContaTipoReceitaDespesaOptions" placeholder="Selecione"
@@ -64,7 +64,15 @@
               </p-dropdown>
             </div>
 
-            <div class="ui-g-12 ui-fluid ui-md-7">
+            <div class="ui-g-12 ui-fluid ui-md-2">
+              <label style="display: block"
+                for="ativo">{{ getTranslation('financeiro.plano_contas.planoConta_ativo') }}</label>
+              <p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="planoConta.ativo" name="ativo" required>
+              </p-inputSwitch>
+              <div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
+            </div>
+
+            <div class="ui-g-12 ui-fluid ui-md-12">
               <label
                 for="planoContaPai">{{ getTranslation('financeiro.plano_contas.planoConta_planoContaPai') }}</label>
               <p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true"
@@ -80,21 +88,12 @@
               </p-autoComplete>
             </div>
 
-            <div class="ui-g-12 ui-fluid ui-md-1">
-              <label style="display: block"
-                for="ativo">{{ getTranslation('financeiro.plano_contas.planoConta_ativo') }}</label>
-              <p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="planoConta.ativo" name="ativo" required>
-              </p-inputSwitch>
-              <div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
-            </div>
-
             <div class="ui-g-12">
               <div class="ui-g-12 ui-md-12">
                 <button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit"
                   label="Salvar"></button>
                 <button pButton (click)="begin(form1)" type="button" label="Novo"
                   class="botao-margem-direita ui-button-info"></button>
-                <a routerLink="/planoconta" pButton label="Pesquisar"></a>
               </div>
             </div>
           </div>

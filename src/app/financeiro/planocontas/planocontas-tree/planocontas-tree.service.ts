@@ -33,7 +33,20 @@ export class PlanoContasTreeService {
         const result = response as TreeNode[];
         return result;
       });
+  }
 
+  getPlanoContasNode(id: string): Promise<TreeNode> {
+    const headers = this.getHeaders();
+
+    let params = new HttpParams();
+    params = params.set('id', id);
+
+    return this.http.get<TreeNode>(`${this.url}/getPlanoContasNode`, { headers, params })
+      .toPromise()
+      .then(response => {
+        const result = response as TreeNode;
+        return result;
+      });
   }
 
 

@@ -1,8 +1,9 @@
+import { MessageHandlerService } from './../../../core/message-handler.service';
 import { PlanoContasTreeService } from './planocontas-tree.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {MessageService} from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import {TreeNode} from 'primeng/api';
 
 import { FinanceiroPlanoContasTranslationService } from '../i18n/financeiro-planocontas-translation.service';
@@ -26,7 +27,7 @@ export class PlanoContaTreeComponent implements OnInit {
   selectedNode: TreeNode;
 
   planoConta = new PlanoConta();
-  planoContaOld = new PlanoConta();
+  planoContaOld: PlanoConta = null;
 	planoContaPlanoContaPaiAutoCompleteSuggestions: PlanoContaAutoComplete[];
 	planoContaTipoFinanceiroOptions: TipoPlanoContaFinanceiro[];
 
@@ -38,7 +39,9 @@ export class PlanoContaTreeComponent implements OnInit {
 	    private planoContasTreeService: PlanoContasTreeService,
 	    private financeiroPlanoContasTranslationService: FinanceiroPlanoContasTranslationService,
 	    private route: ActivatedRoute,
-	    private messageService: MessageService
+      private messageService: MessageService,
+      private confirmation: ConfirmationService,
+      private messageHandlerService: MessageHandlerService
 	) {
 		this.initializePlanoContaTipoFinanceiroOptions();
 
@@ -65,7 +68,6 @@ export class PlanoContaTreeComponent implements OnInit {
 	begin(form: FormControl) {
 	    form.reset();
 	    setTimeout(function() {
-        // this.planoConta = new PlanoConta();
         this.doNew();
 	    }.bind(this), 1);
   }
@@ -135,34 +137,134 @@ export class PlanoContaTreeComponent implements OnInit {
   }
 
 	save(form: FormControl) {
-	    if (this.isEditing) {
-	      this.update(form);
-	    } else {
-	      this.create(form);
-	    }
-	}
+      const node = this.findAnyOtherNodeByThisCodigo(this.selectedNode, this.planoConta.codigo);
+      if (node) {
+        const str = this.planoConta.codigo + ' - ' + this.planoConta.descricao;
+        this.confirmSaveSameCodigo(`O item "${str}" tem o mesmo código do item "${node.label}", deseja salvar mesmo assim?`);
+      } else {
+        if (this.isEditing) {
+          this.update(form);
+        } else {
+          this.create(form);
+        }
+      }
+  }
+
+  findAnyOtherNodeByThisCodigo(nodeToValidate: TreeNode, codigo: string): TreeNode {
+    if (!nodeToValidate || !codigo) {
+      return null;
+    }
+    if (this.planoContasTree) {
+      for (let i = 0; i < this.planoContasTree.length; i++) {
+        const it = this.planoContasTree[i];
+        const theNode = this.getAnyOtherNodeByThisCodigo(nodeToValidate, it, codigo);
+        if (theNode) {
+          return theNode;
+        }
+      }
+
+    }
+
+    return null;
+  }
+
+  getAnyOtherNodeByThisCodigo(nodeToValidate: TreeNode, node: TreeNode, codigo: string): TreeNode {
+    if (nodeToValidate && node) {
+      if (node.data === codigo && nodeToValidate.key !== node.key) {
+        return node;
+      }
+
+      for (let i = 0; i < node.children.length; i++) {
+        const it = node.children[i];
+        const theNode = this.getAnyOtherNodeByThisCodigo(nodeToValidate, it, codigo);
+        if (theNode) {
+          return theNode;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  confirmSaveSameCodigo(message: string) {
+    this.confirmation.confirm({
+      message: message,
+      accept: () => {
+        if (this.isEditing) {
+          this.update(null);
+        } else {
+          this.create(null);
+        }
+      }
+    });
+}
 
 	create(form: FormControl) {
 	    this.planoContaService.create(this.planoConta)
 	    .then((planoConta) => {
 	      this.planoConta = planoConta;
-	      this.showSuccess('Registro criado com sucesso!');
+        this.showSuccess('Registro criado com sucesso!');
+        this.getPlanoContasNode(this.selectedNode);
 	    }).
 	    catch(error => {
-	      this.showError('Erro ao criar registro: ' + error);
+	      this.messageHandlerService.showError(error);
 	    });
-	}
+  }
 
-	update(form: FormControl) {
-	    this.planoContaService.update(this.planoConta)
-	    .then((planoConta) => {
-	      this.planoConta = planoConta;
-	      this.showSuccess('Registro alterado!');
-	    })
-	    .catch(error => {
-	      this.showError('Erro ao atualizar registro: ' + error);
-	    });
-	}
+  update(form: FormControl) {
+    this.planoContaService.update(this.planoConta)
+    .then((planoConta) => {
+      this.planoConta = planoConta;
+      this.showSuccess('Registro alterado!');
+      this.getPlanoContasNode(this.selectedNode);
+    })
+    .catch(error => {
+      this.messageHandlerService.showError(error);
+    });
+}
+
+  getPlanoContasNode(node: TreeNode) {
+    if (node) {
+      const id = node.key;
+      this.planoContasTreeService.getPlanoContasNode(id)
+      .then(loadedNode => {
+        this.updateNode(node, loadedNode);
+      })
+      .catch(error => {
+        this.showError('Erro ao regarregar item do Plano de Contas: ' + error);
+      });
+    }
+  }
+
+  updateNode(oldNode: TreeNode, newNode: TreeNode) {
+    if (! (oldNode && newNode)) {
+      return;
+    }
+
+    const parent = oldNode.parent;
+    if (!parent) {
+      if (oldNode.key === newNode.key) {
+        oldNode.label = newNode.label;
+        oldNode.data = newNode.data;
+        oldNode.children = newNode.children;
+      }
+      return;
+    }
+
+    let index = -1;
+    let indexAuxi = -1;
+    parent.children.forEach(node => {
+      indexAuxi++;
+      if (node.key === newNode.key) {
+        index = indexAuxi;
+        return;
+      }
+    });
+
+    if (index !== -1) {
+      parent.children[index] = newNode;
+    }
+  }
 
 	getPlanoContaById(id: string) {
 	    this.planoContaService.retrieve(id)
@@ -254,7 +356,6 @@ export class PlanoContaTreeComponent implements OnInit {
 
   nodeSelect(event) {
     this.getPlanoContaById(event.node.key);
-    // this.messageService.add({severity: 'info', summary: 'Node Selected', detail: event.node.key});
 }
 
   /////////////
