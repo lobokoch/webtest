@@ -1,3 +1,5 @@
+import { PlanoContasTreeService } from './financeiro/planocontas/planocontas-tree/planocontas-tree.service';
+import { PlanoContaTreeComponent } from './financeiro/planocontas/planocontas-tree/crud-planoconta-tree.component';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,8 +32,6 @@ import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {TreeModule} from 'primeng/tree';
-import {TreeNode} from 'primeng/api';
-
 
 // CurrencyMask
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -107,9 +107,10 @@ const routes: Routes = [
 
 	// Kerubin Begin
 
-	{ path: 'planoconta/novo', component: PlanoContaComponent, canActivate: [AuthGuard] },
-	{ path: 'planoconta/:id', component: PlanoContaComponent, canActivate: [AuthGuard] },
-	{ path: 'planoconta', component: PlanoContaListComponent, canActivate: [AuthGuard] },
+	{ path: 'planoconta/novo', component: PlanoContaTreeComponent, canActivate: [AuthGuard] },
+	{ path: 'planoconta/:id', component: PlanoContaTreeComponent, canActivate: [AuthGuard] },
+	{ path: 'planoconta', component: PlanoContaTreeComponent, canActivate: [AuthGuard] },
+	{ path: 'planoconta/list', component: PlanoContaComponent, canActivate: [AuthGuard] },
 
 	{ path: 'contapagar/novo', component: ContaPagarComponent, canActivate: [AuthGuard] },
 	{ path: 'contapagar/:id', component: ContaPagarComponent, canActivate: [AuthGuard] },
@@ -140,7 +141,7 @@ const routes: Routes = [
 	{ path: 'cartaocredito', component: CartaoCreditoListComponent, canActivate: [AuthGuard] },
 	// Kerubin Begin
 
-  { path: 'mainmenu', component: ContaPagarListComponent, canActivate: [AuthGuard] },
+  { path: 'mainmenu', component: PlanoContaTreeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'confignewaccount', component: ConfigNewAccountComponent },
   { path: 'newaccount', component: NewAccountComponent },
@@ -153,6 +154,7 @@ const routes: Routes = [
   declarations: [
     // Kerubin Begin
 
+    PlanoContaTreeComponent,
     PlanoContaComponent,
     PlanoContaListComponent,
 
@@ -221,6 +223,7 @@ const routes: Routes = [
   providers: [
   	// Kerubin Begin
   	PlanoContaService,
+  	PlanoContasTreeService,
   	FinanceiroPlanoContasTranslationService,
 
   	ContaPagarService,
