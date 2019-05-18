@@ -137,7 +137,7 @@ export class PlanoContaTreeComponent implements OnInit {
   }
 
 	save(form: FormControl) {
-      const node = this.findAnyOtherNodeByThisCodigo(this.selectedNode, this.planoConta.codigo);
+      const node = this.findAnyOtherNodeByThisCodigo(this.planoConta.id, this.planoConta.codigo);
       if (node) {
         const str = this.planoConta.codigo + ' - ' + this.planoConta.descricao;
         this.confirmSaveSameCodigo(`O item "${str}" tem o mesmo código do item "${node.label}", deseja salvar mesmo assim?`);
@@ -150,16 +150,13 @@ export class PlanoContaTreeComponent implements OnInit {
       }
   }
 
-  findAnyOtherNodeByThisCodigo(nodeToValidate: TreeNode, codigo: string): TreeNode {
-    if (!nodeToValidate || !codigo) {
-      return null;
-    }
+  findAnyOtherNodeByThisCodigo(id: string, codigo: string): TreeNode {
     if (this.planoContasTree) {
       for (let i = 0; i < this.planoContasTree.length; i++) {
-        const it = this.planoContasTree[i];
-        const theNode = this.getAnyOtherNodeByThisCodigo(nodeToValidate, it, codigo);
-        if (theNode) {
-          return theNode;
+        let node = this.planoContasTree[i];
+        node = this.getAnyOtherNodeByThisCodigo(id, codigo, node);
+        if (node) {
+          return node;
         }
       }
 
@@ -168,17 +165,17 @@ export class PlanoContaTreeComponent implements OnInit {
     return null;
   }
 
-  getAnyOtherNodeByThisCodigo(nodeToValidate: TreeNode, node: TreeNode, codigo: string): TreeNode {
-    if (nodeToValidate && node) {
-      if (node.data === codigo && nodeToValidate.key !== node.key) {
+  getAnyOtherNodeByThisCodigo(id: string, codigo: string, node: TreeNode): TreeNode {
+    if (node) {
+      if (node.data === codigo && node.key !== id) {
         return node;
       }
 
       for (let i = 0; i < node.children.length; i++) {
-        const it = node.children[i];
-        const theNode = this.getAnyOtherNodeByThisCodigo(nodeToValidate, it, codigo);
-        if (theNode) {
-          return theNode;
+        let childNode = node.children[i];
+        childNode = this.getAnyOtherNodeByThisCodigo(id, codigo, childNode);
+        if (childNode) {
+          return childNode;
         }
       }
     }

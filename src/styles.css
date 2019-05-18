@@ -256,3 +256,19 @@ a, button {
 .ui-accordion-content {
   width: 99.7% !important;
 }
+
+/*
+.custom .ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4 !important;
+}
+
+.custom .ui-scrollpanel-bar {
+  background-color: #1976d2 !important;
+  opacity: 1 !important;
+  transition: background-color .3s !important;
+}
+
+.custom .ui-scrollpanel-bar:hover {
+  background-color: #135ba1 !important;
+}
+*/
