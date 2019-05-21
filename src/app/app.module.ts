@@ -32,6 +32,8 @@ import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {TreeModule} from 'primeng/tree';
+import {MenuModule} from 'primeng/menu';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 // CurrencyMask
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -86,6 +88,7 @@ import { ConfirmAccountComponent } from './account/confirmaccount/confirmaccount
 import { ConfigNewAccountComponent } from './account/confignewaccount/confignewaccount.component';
 import { UserAccountService } from './account/useraccount.service';
 import { FocusDirective } from './directive/focus.directive';
+import { MenuComponent } from './menu/menu.component';
 
 // Kerubin end
 
@@ -184,9 +187,11 @@ const routes: Routes = [
     ConfirmAccountComponent,
     ConfigNewAccountComponent,
     FocusDirective,
+    MenuComponent,
     // Kerubin End
 
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -216,6 +221,8 @@ const routes: Routes = [
     DropdownModule,
     CardModule,
     TreeModule,
+    MenuModule,
+    PanelMenuModule,
 
     CoreModule,
     SecurityModule

@@ -2,9 +2,9 @@
 
   <div class="ui-g">
 
-    <div class="ui-g-12">
+    <!--div class="ui-g-12">
       <h1>{{ getTranslation('financeiro.plano_contas.planoConta') }}</h1>
-    </div>
+    </div-->
 
     <div class="ui-g-12">
 
@@ -87,13 +87,15 @@
               </p-autoComplete>
             </div>
 
-            <div class="ui-g-12">
-              <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-fluid">
+                <div class="ui-g-12 ui-fluid ui-md-2">
                 <button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit"
                   label="Salvar"></button>
+                </div>
+                <div class="ui-g-12 ui-fluid ui-md-2">
                 <button pButton (click)="begin(form1)" type="button" label="Novo"
                   class="botao-margem-direita ui-button-info"></button>
-              </div>
+                </div>
             </div>
           </div>
         </form>

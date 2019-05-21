@@ -1,12 +1,21 @@
 <app-navbar *ngIf="canShowMenu()"></app-navbar>
+<div class="ui-g">
+  <div class="ui-g-12 ui-fluid">
+    <div class="ui-g-12 ui-fluid ui-md-2">
+    <app-menu *ngIf="canShowMenu()"></app-menu>
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="ui-g-12 ui-fluid ui-md-10">
+    <router-outlet></router-outlet>
+  </div>
 
-<p-toast></p-toast>
+    <p-toast></p-toast>
 
-<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao>
-    <p-footer>
-      <button type="button" pButton label="Sim" (click)="confirmacao.accept()"></button>
-      <button type="button" pButton label="Não" (click)="confirmacao.reject()"></button>
-    </p-footer>
-  </p-confirmDialog>
+    <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao>
+      <p-footer>
+        <button type="button" pButton label="Sim" (click)="confirmacao.accept()"></button>
+        <button type="button" pButton label="Não" (click)="confirmacao.reject()"></button>
+      </p-footer>
+    </p-confirmDialog>
+  </div>
+</div>
