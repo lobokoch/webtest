@@ -1,0 +1,95 @@
+<div class="container">
+
+  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  	<div class="ui-g">
+  	
+		<div class="ui-g-12">
+			<h1>{{ getTranslation('cadastros.banco.contaBancaria') }}</h1>
+		</div>
+		<div class="ui-g-12 ui-fluid">
+			<label for="id" class="hidden">{{ getTranslation('cadastros.banco.contaBancaria_id') }}</label>
+			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="contaBancaria.id" name="id" readonly class="read-only">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-6">
+			<label for="nomeTitular">{{ getTranslation('cadastros.banco.contaBancaria_nomeTitular') }}</label>
+			<input type="text" pInputText #nomeTitular="ngModel" ngModel [(ngModel)]="contaBancaria.nomeTitular" name="nomeTitular" required>
+			<div class="invalid-message" *ngIf="nomeTitular.invalid && nomeTitular.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="agencia">{{ getTranslation('cadastros.banco.contaBancaria_agencia') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaBancariaAgenciaAutoCompleteSuggestions" (completeMethod)="contaBancariaAgenciaAutoComplete($event)" (onClear)="contaBancariaAgenciaAutoCompleteClear($event)" [field]="contaBancariaAgenciaAutoCompleteFieldConverter" #agencia="ngModel" ngModel [(ngModel)]="contaBancaria.agencia" name="agencia" required>
+				<ng-template let-agencia pTemplate="item">
+											<div class="ui-helper-clearfix">{{ contaBancariaAgenciaAutoCompleteFieldConverter(agencia) }}</div>
+				</ng-template>
+			</p-autoComplete>
+			<div class="invalid-message" *ngIf="agencia.invalid && agencia.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="tipoContaBancaria">{{ getTranslation('cadastros.banco.contaBancaria_tipoContaBancaria') }}</label>
+			<p-dropdown [options]="contaBancariaTipoContaBancariaOptions" placeholder="Selecione" #tipoContaBancaria="ngModel" ngModel [(ngModel)]="contaBancaria.tipoContaBancaria" name="tipoContaBancaria" required></p-dropdown>
+			<div class="invalid-message" *ngIf="tipoContaBancaria.invalid && tipoContaBancaria.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-6">
+			<label for="numeroConta">{{ getTranslation('cadastros.banco.contaBancaria_numeroConta') }}</label>
+			<input type="text" pInputText #numeroConta="ngModel" ngModel [(ngModel)]="contaBancaria.numeroConta" name="numeroConta" required>
+			<div class="invalid-message" *ngIf="numeroConta.invalid && numeroConta.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="digito">{{ getTranslation('cadastros.banco.contaBancaria_digito') }}</label>
+			<input type="text" pInputText #digito="ngModel" ngModel [(ngModel)]="contaBancaria.digito" name="digito">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="saldo">{{ getTranslation('cadastros.banco.contaBancaria_saldo') }}</label>
+			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #saldo="ngModel" ngModel [(ngModel)]="contaBancaria.saldo" name="saldo">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-8">
+			<label for="numeroCartao">{{ getTranslation('cadastros.banco.contaBancaria_numeroCartao') }}</label>
+			<input type="text" pInputText #numeroCartao="ngModel" ngModel [(ngModel)]="contaBancaria.numeroCartao" name="numeroCartao">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="codigoSeguranca">{{ getTranslation('cadastros.banco.contaBancaria_codigoSeguranca') }}</label>
+			<input type="text" pInputText #codigoSeguranca="ngModel" ngModel [(ngModel)]="contaBancaria.codigoSeguranca" name="codigoSeguranca">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="dataValidade">{{ getTranslation('cadastros.banco.contaBancaria_dataValidade') }}</label>
+			<p-calendar dateFormat="dd/mm/yy" #dataValidade="ngModel" ngModel [(ngModel)]="contaBancaria.dataValidade" name="dataValidade"></p-calendar>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-8">
+			<label for="bandeiraCartao">{{ getTranslation('cadastros.banco.contaBancaria_bandeiraCartao') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaBancariaBandeiraCartaoAutoCompleteSuggestions" (completeMethod)="contaBancariaBandeiraCartaoAutoComplete($event)" (onClear)="contaBancariaBandeiraCartaoAutoCompleteClear($event)" [field]="contaBancariaBandeiraCartaoAutoCompleteFieldConverter" #bandeiraCartao="ngModel" ngModel [(ngModel)]="contaBancaria.bandeiraCartao" name="bandeiraCartao" required>
+				<ng-template let-bandeiraCartao pTemplate="item">
+											<div class="ui-helper-clearfix">{{ contaBancariaBandeiraCartaoAutoCompleteFieldConverter(bandeiraCartao) }}</div>
+				</ng-template>
+			</p-autoComplete>
+			<div class="invalid-message" *ngIf="bandeiraCartao.invalid && bandeiraCartao.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label style="display: block" for="ativo">{{ getTranslation('cadastros.banco.contaBancaria_ativo') }}</label>
+			<p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="contaBancaria.ativo" name="ativo" required></p-inputSwitch>
+			<div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12">
+			<div class="ui-g-12 ui-md-4">
+				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+				<a routerLink="/contabancaria" pButton label="Pesquisar"></a>
+			</div>
+		</div>
+		
+	
+	</div>
+  </form>
+  
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+
+  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  	<div class="ui-g">
+  	
+		<div class="ui-g-12">
+			<h1>{{ getTranslation('cadastros.fornecedor.fornecedor') }}</h1>
+		</div>
+		<div class="ui-g-12 ui-fluid">
+			<label for="id" class="hidden">{{ getTranslation('cadastros.fornecedor.fornecedor_id') }}</label>
+			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="fornecedor.id" name="id" readonly class="read-only">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-6">
+			<label for="nome">{{ getTranslation('cadastros.fornecedor.fornecedor_nome') }}</label>
+			<input type="text" pInputText #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
+			<div class="invalid-message" *ngIf="nome.invalid && nome.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="cpfCNPJ">{{ getTranslation('cadastros.fornecedor.fornecedor_cpfCNPJ') }}</label>
+			<input type="text" pInputText #cpfCNPJ="ngModel" ngModel [(ngModel)]="fornecedor.cpfCNPJ" name="cpfCNPJ">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="ie">{{ getTranslation('cadastros.fornecedor.fornecedor_ie') }}</label>
+			<input type="text" pInputText #ie="ngModel" ngModel [(ngModel)]="fornecedor.ie" name="ie">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-4">
+			<label for="nomeContato">{{ getTranslation('cadastros.fornecedor.fornecedor_nomeContato') }}</label>
+			<input type="text" pInputText #nomeContato="ngModel" ngModel [(ngModel)]="fornecedor.nomeContato" name="nomeContato">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="fone">{{ getTranslation('cadastros.fornecedor.fornecedor_fone') }}</label>
+			<input type="text" pInputText #fone="ngModel" ngModel [(ngModel)]="fornecedor.fone" name="fone">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="celular">{{ getTranslation('cadastros.fornecedor.fornecedor_celular') }}</label>
+			<input type="text" pInputText #celular="ngModel" ngModel [(ngModel)]="fornecedor.celular" name="celular">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-6">
+			<label for="email">{{ getTranslation('cadastros.fornecedor.fornecedor_email') }}</label>
+			<input type="text" pInputText #email="ngModel" ngModel [(ngModel)]="fornecedor.email" name="email">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-6">
+			<label for="site">{{ getTranslation('cadastros.fornecedor.fornecedor_site') }}</label>
+			<input type="text" pInputText #site="ngModel" ngModel [(ngModel)]="fornecedor.site" name="site">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-12">
+			<label for="observacoes">{{ getTranslation('cadastros.fornecedor.fornecedor_observacoes') }}</label>
+			<textarea pInputTextarea rows="3" #observacoes="ngModel" ngModel [(ngModel)]="fornecedor.observacoes" name="observacoes"></textarea>
+		</div>
+		
+		<div class="ui-g-12">
+			<div class="ui-g-12 ui-md-4">
+				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+				<a routerLink="/fornecedor" pButton label="Pesquisar"></a>
+			</div>
+		</div>
+		
+	
+	</div>
+  </form>
+  
+</div>

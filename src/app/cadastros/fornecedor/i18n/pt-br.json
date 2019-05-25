@@ -1,0 +1,23 @@
+{
+	"cadastros.fornecedor.fornecedor": "Fornecedor",
+	"cadastros.fornecedor.fornecedor_id": "#id",
+	"cadastros.fornecedor.fornecedor_id_grid": "#id",
+	"cadastros.fornecedor.fornecedor_nome": "Nome",
+	"cadastros.fornecedor.fornecedor_nome_grid": "Nome",
+	"cadastros.fornecedor.fornecedor_cpfCNPJ": "Documento (CNPJ/CPF)",
+	"cadastros.fornecedor.fornecedor_cpfCNPJ_grid": "Documento (CNPJ/CPF)",
+	"cadastros.fornecedor.fornecedor_ie": "Inscrição estadual",
+	"cadastros.fornecedor.fornecedor_ie_grid": "Inscrição estadual",
+	"cadastros.fornecedor.fornecedor_nomeContato": "Nome para contato",
+	"cadastros.fornecedor.fornecedor_nomeContato_grid": "Nome para contato",
+	"cadastros.fornecedor.fornecedor_fone": "Telefone",
+	"cadastros.fornecedor.fornecedor_fone_grid": "Telefone",
+	"cadastros.fornecedor.fornecedor_celular": "Celular",
+	"cadastros.fornecedor.fornecedor_celular_grid": "Celular",
+	"cadastros.fornecedor.fornecedor_email": "E-mail",
+	"cadastros.fornecedor.fornecedor_email_grid": "E-mail",
+	"cadastros.fornecedor.fornecedor_site": "Site",
+	"cadastros.fornecedor.fornecedor_site_grid": "Site",
+	"cadastros.fornecedor.fornecedor_observacoes": "Observações",
+	"cadastros.fornecedor.fornecedor_observacoes_grid": "Observações"
+}

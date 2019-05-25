@@ -1,0 +1,126 @@
+<div class="container">
+
+  	<div class="ui-g">
+		<div>
+			<h1>{{ getTranslation('cadastros.banco.cartaoCredito') }}</h1>
+		</div>
+		
+		<!-- Begin Filters -->
+		<p-accordion class="ui-g-12">
+			<p-accordionTab header="Filtro">
+			
+				<div class="ui-g">
+					<div class="ui-g-12">
+					</div>
+					
+					<div>
+						<p-button label="Pesquisar" (click)="cartaoCreditoFilterSearch()"></p-button>
+					</div>
+				</div>
+				
+			
+			</p-accordionTab>
+		</p-accordion>
+		<!-- End Filters -->
+		
+		<!-- Begin GRID -->
+		<div class="ui-g-12" name="data-grid">
+			<p-table selectionMode="single" [loading]="loading" [responsive]="true" [customSort]="true" [paginator]="true" 
+				[value]="cartaoCreditoListItems"
+			    [rows]="cartaoCreditoListFilter.pageSize" 
+			    [totalRecords]="cartaoCreditoListTotalElements"
+			    [lazy]="true" (onLazyLoad)="cartaoCreditoListOnLazyLoad($event)" >
+			    
+			    <ng-template pTemplate="header">
+		            <tr>
+		            	<th [pSortableColumn]="'banco'">{{ getTranslation('cadastros.banco.cartaoCredito_banco_grid') }}<p-sortIcon [field]="'banco'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'nomeTitular'">{{ getTranslation('cadastros.banco.cartaoCredito_nomeTitular_grid') }}<p-sortIcon [field]="'nomeTitular'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'numeroCartao'">{{ getTranslation('cadastros.banco.cartaoCredito_numeroCartao_grid') }}<p-sortIcon [field]="'numeroCartao'"></p-sortIcon></th>
+		            	<th style="width: 7em" [pSortableColumn]="'validade'">{{ getTranslation('cadastros.banco.cartaoCredito_validade_grid') }}<p-sortIcon [field]="'validade'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'codigoSeguranca'">{{ getTranslation('cadastros.banco.cartaoCredito_codigoSeguranca_grid') }}<p-sortIcon [field]="'codigoSeguranca'"></p-sortIcon></th>
+		            	<th style="width: 8em" [pSortableColumn]="'valorLimite'">{{ getTranslation('cadastros.banco.cartaoCredito_valorLimite_grid') }}<p-sortIcon [field]="'valorLimite'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'bandeiraCartao'">{{ getTranslation('cadastros.banco.cartaoCredito_bandeiraCartao_grid') }}<p-sortIcon [field]="'bandeiraCartao'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'ativo'">{{ getTranslation('cadastros.banco.cartaoCredito_ativo_grid') }}<p-sortIcon [field]="'ativo'"></p-sortIcon></th>
+						<th style="width: 12em">Ações</th>
+		            </tr>
+		        </ng-template>
+		        
+			    <ng-template pTemplate="body" let-cartaoCredito>
+		            <tr [pSelectableRow]="cartaoCredito">
+		            	<td>
+		            		{{cartaoCreditoBancoAutoCompleteFieldConverter(cartaoCredito?.banco)}}
+		            	</td>
+		            	<td>
+		            		{{cartaoCredito?.nomeTitular}}
+		            	</td>
+		            	<td>
+		            		{{cartaoCredito?.numeroCartao}}
+		            	</td>
+		            	<td>
+		            		{{cartaoCredito?.validade | date:'dd/MM/yyyy'}}
+		            	</td>
+		            	<td>
+		            		{{cartaoCredito?.codigoSeguranca}}
+		            	</td>
+		            	<td class="kb-field-money">
+		            		{{cartaoCredito?.valorLimite | currency:'BRL':'symbol':'1.2-2':'pt' }}
+		            	</td>
+		            	<td>
+		            		{{cartaoCreditoBandeiraCartaoAutoCompleteFieldConverter(cartaoCredito?.bandeiraCartao)}}
+		            	</td>
+		            	<td>
+		            		{{cartaoCredito?.ativo? 'Sim': 'Não' }}
+		            	</td>
+		              	<td class="kb-actions">
+		              		<a pButton [routerLink]="['/cartaocredito', cartaoCredito.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+		              		<!-- <button (click)="mostrarPagarConta(cartaoCredito)" pButton icon="pi pi-money"  pTooltip="Pagar esta conta" tooltipPosition="top"></button> -->
+		              		<button (click)="deleteCartaoCredito(cartaoCredito)" pButton icon="pi pi-trash"  pTooltip="Excluir" tooltipPosition="top"></button>
+		              	</td>
+		            </tr>
+		        </ng-template>
+		        
+		        
+		        <ng-template pTemplate="emptymessage" let-columns>
+				    <tr>
+				        <td [attr.colspan]="9">
+				            Nenhum registro encontrado.
+				        </td>
+				    </tr>
+				</ng-template>
+				
+			</p-table>
+		</div>
+		<!-- End GRID -->
+		
+		<div class="ui-g-12">
+			<a routerLink="/cartaocredito/novo" pButton label="Novo registro"></a>
+		</div>
+		
+		<!-- Begin Extras
+		
+		<p-dialog header="Pagar conta" [(visible)]="mostrarDialogPagarConta" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70"
+		        [maximizable]="false" [baseZIndex]="10000">
+		      <div>
+		          <div>Conta: <strong>{{ contaPagar.descricao }}</strong></div>
+		          <div>
+		              <label style="display: block">Valor pago</label>
+		              <input currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+		              [(ngModel)]="contaPagar.valorPago" pInputText type="text" name="contaPagarValorPago" ngModel placeholder="0,00">
+		          </div>
+		          <div>
+		              <label style="display: block">Data pagamento</label>
+		              <p-calendar name="contaPagarDataPagamento" dateFormat="dd/mm/yy"
+		              [inline]="false" [readonlyInput]="false" [showIcon]="false"
+		               [(ngModel)]="contaPagar.dataPagamento" ngModel></p-calendar>
+		          </div>
+		      </div>
+		        <p-footer>
+		            <button type="button" pButton icon="pi pi-check" (click)="executarPagarConta()" label="Pagar"></button>
+		            <button type="button" pButton icon="pi pi-close" (click)="cancelarPagarConta()" label="Cancelar" class="ui-button-secondary"></button>
+		        </p-footer>
+		</p-dialog>
+		
+		End Extras -->
+	</div>
+  
+</div>

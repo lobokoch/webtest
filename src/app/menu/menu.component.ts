@@ -65,14 +65,7 @@ export class MenuComponent implements OnInit {
             label: 'ContasPagar',
             icon: 'pi pi-fw ',
             items: [
-              { label: 'Contas a pagar', icon: 'pi pi-fw', routerLink: '/contapagar' },
-              { label: 'Fornecedor', icon: 'pi pi-fw', routerLink: '/fornecedor' },
-              { label: 'Banco', icon: 'pi pi-fw', routerLink: '/banco' },
-              { label: 'Agência bancária', icon: 'pi pi-fw', routerLink: '/agenciabancaria' },
-              { label: 'Bandeira de cartão', icon: 'pi pi-fw', routerLink: '/bandeiracartao' },
-              { label: 'Conta bancária', icon: 'pi pi-fw', routerLink: '/contabancaria' },
-              { label: 'Cartão de crédito', icon: 'pi pi-fw', routerLink: '/cartaocredito' },
-              { label: 'Plano de Contas', icon: 'pi pi-fw', routerLink: '/planoconta' }
+              { label: 'Contas a pagar', icon: 'pi pi-fw', routerLink: '/contapagar' }
             ]
           }
 

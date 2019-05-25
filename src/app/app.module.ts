@@ -50,33 +50,33 @@ import { PlanoContaListComponent } from './financeiro/planocontas/planoconta/lis
 import { PlanoContaService } from './financeiro/planocontas/planoconta/planoconta.service';
 import { FinanceiroPlanoContasTranslationService } from './financeiro/planocontas/i18n/financeiro-planocontas-translation.service';
 
-import { ContaPagarComponent } from './kerubin/clientes/contapagar/crud-contapagar.component';
-import { ContaPagarListComponent } from './kerubin/clientes/contapagar/list-contapagar.component';
-import { ContaPagarService } from './kerubin/clientes/contapagar/contapagar.service';
+import { ContaPagarComponent } from './financeiro/contaspagar/contapagar/crud-contapagar.component';
+import { ContaPagarListComponent } from './financeiro/contaspagar/contapagar/list-contapagar.component';
+import { ContaPagarService } from './financeiro/contaspagar/contapagar/contapagar.service';
 
-import { FornecedorComponent } from './kerubin/clientes/fornecedor/crud-fornecedor.component';
-import { FornecedorListComponent } from './kerubin/clientes/fornecedor/list-fornecedor.component';
-import { FornecedorService } from './kerubin/clientes/fornecedor/fornecedor.service';
+import { FornecedorComponent } from './cadastros/fornecedor/fornecedor/crud-fornecedor.component';
+import { FornecedorListComponent } from './cadastros/fornecedor/fornecedor/list-fornecedor.component';
+import { FornecedorService } from './cadastros/fornecedor/fornecedor/fornecedor.service';
 
-import { BancoComponent } from './kerubin/clientes/banco/crud-banco.component';
-import { BancoListComponent } from './kerubin/clientes/banco/list-banco.component';
-import { BancoService } from './kerubin/clientes/banco/banco.service';
+import { BancoComponent } from './cadastros/banco/banco/crud-banco.component';
+import { BancoListComponent } from './cadastros/banco/banco/list-banco.component';
+import { BancoService } from './cadastros/banco/banco/banco.service';
 
-import { AgenciaBancariaComponent } from './kerubin/clientes/agenciabancaria/crud-agenciabancaria.component';
-import { AgenciaBancariaListComponent } from './kerubin/clientes/agenciabancaria/list-agenciabancaria.component';
-import { AgenciaBancariaService } from './kerubin/clientes/agenciabancaria/agenciabancaria.service';
+import { AgenciaBancariaComponent } from './cadastros/banco/agenciabancaria/crud-agenciabancaria.component';
+import { AgenciaBancariaListComponent } from './cadastros/banco/agenciabancaria/list-agenciabancaria.component';
+import { AgenciaBancariaService } from './cadastros/banco/agenciabancaria/agenciabancaria.service';
 
-import { BandeiraCartaoComponent } from './kerubin/clientes/bandeiracartao/crud-bandeiracartao.component';
-import { BandeiraCartaoListComponent } from './kerubin/clientes/bandeiracartao/list-bandeiracartao.component';
-import { BandeiraCartaoService } from './kerubin/clientes/bandeiracartao/bandeiracartao.service';
+import { BandeiraCartaoComponent } from './cadastros/banco/bandeiracartao/crud-bandeiracartao.component';
+import { BandeiraCartaoListComponent } from './cadastros/banco/bandeiracartao/list-bandeiracartao.component';
+import { BandeiraCartaoService } from './cadastros/banco/bandeiracartao/bandeiracartao.service';
 
-import { ContaBancariaComponent } from './kerubin/clientes/contabancaria/crud-contabancaria.component';
-import { ContaBancariaListComponent } from './kerubin/clientes/contabancaria/list-contabancaria.component';
-import { ContaBancariaService } from './kerubin/clientes/contabancaria/contabancaria.service';
+import { ContaBancariaComponent } from './cadastros/banco/contabancaria/crud-contabancaria.component';
+import { ContaBancariaListComponent } from './cadastros/banco/contabancaria/list-contabancaria.component';
+import { ContaBancariaService } from './cadastros/banco/contabancaria/contabancaria.service';
 
-import { CartaoCreditoComponent } from './kerubin/clientes/cartaocredito/crud-cartaocredito.component';
-import { CartaoCreditoListComponent } from './kerubin/clientes/cartaocredito/list-cartaocredito.component';
-import { CartaoCreditoService } from './kerubin/clientes/cartaocredito/cartaocredito.service';
+import { CartaoCreditoComponent } from './cadastros/banco/cartaocredito/crud-cartaocredito.component';
+import { CartaoCreditoListComponent } from './cadastros/banco/cartaocredito/list-cartaocredito.component';
+import { CartaoCreditoService } from './cadastros/banco/cartaocredito/cartaocredito.service';
 import { KerubinClientesTranslationService } from './kerubin/clientes/i18n/kerubin-clientes-translation.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
@@ -89,6 +89,9 @@ import { ConfigNewAccountComponent } from './account/confignewaccount/confignewa
 import { UserAccountService } from './account/useraccount.service';
 import { FocusDirective } from './directive/focus.directive';
 import { MenuComponent } from './menu/menu.component';
+import { CadastrosFornecedorTranslationService } from './cadastros/fornecedor/i18n/cadastros-fornecedor-translation.service';
+import { CadastrosBancoTranslationService } from './cadastros/banco/i18n/cadastros-banco-translation.service';
+
 
 // Kerubin end
 
@@ -240,7 +243,9 @@ const routes: Routes = [
   	BandeiraCartaoService,
   	ContaBancariaService,
   	CartaoCreditoService,
-  	KerubinClientesTranslationService,
+    KerubinClientesTranslationService,
+    CadastrosFornecedorTranslationService,
+    CadastrosBancoTranslationService,
   	UserAccountService,
   	// Kerubin End
 

@@ -1,0 +1,63 @@
+<div class="container">
+
+  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  	<div class="ui-g">
+  	
+		<div class="ui-g-12">
+			<h1>{{ getTranslation('financeiro.contas_pagar.planoConta') }}</h1>
+		</div>
+		<div class="ui-g-12 ui-fluid">
+			<label for="id" class="hidden">{{ getTranslation('financeiro.contas_pagar.planoConta_id') }}</label>
+			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="planoConta.id" name="id" readonly class="read-only">
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="codigo">{{ getTranslation('financeiro.contas_pagar.planoConta_codigo') }}</label>
+			<input type="text" pInputText #codigo="ngModel" ngModel [(ngModel)]="planoConta.codigo" name="codigo" required>
+			<div class="invalid-message" *ngIf="codigo.invalid && codigo.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-10">
+			<label for="descricao">{{ getTranslation('financeiro.contas_pagar.planoConta_descricao') }}</label>
+			<input type="text" pInputText #descricao="ngModel" ngModel [(ngModel)]="planoConta.descricao" name="descricao" required>
+			<div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-2">
+			<label for="tipoReceitaDespesa">{{ getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa') }}</label>
+			<p-dropdown [options]="planoContaTipoReceitaDespesaOptions" placeholder="Selecione" #tipoReceitaDespesa="ngModel" ngModel [(ngModel)]="planoConta.tipoReceitaDespesa" name="tipoReceitaDespesa"></p-dropdown>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-7">
+			<label for="planoContaPai">{{ getTranslation('financeiro.contas_pagar.planoConta_planoContaPai') }}</label>
+			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="planoContaPlanoContaPaiAutoCompleteSuggestions" (completeMethod)="planoContaPlanoContaPaiAutoComplete($event)" (onClear)="planoContaPlanoContaPaiAutoCompleteClear($event)" [field]="planoContaPlanoContaPaiAutoCompleteFieldConverter" #planoContaPai="ngModel" ngModel [(ngModel)]="planoConta.planoContaPai" name="planoContaPai">
+				<ng-template let-planoContaPai pTemplate="item">
+											<div class="ui-helper-clearfix">{{ planoContaPlanoContaPaiAutoCompleteFieldConverter(planoContaPai) }}</div>
+				</ng-template>
+			</p-autoComplete>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid ui-md-1">
+			<label style="display: block" for="ativo">{{ getTranslation('financeiro.contas_pagar.planoConta_ativo') }}</label>
+			<p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="planoConta.ativo" name="ativo" required></p-inputSwitch>
+			<div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label style="display: block" for="deleted" class="hidden">{{ getTranslation('financeiro.contas_pagar.planoConta_deleted') }}</label>
+			<p-inputSwitch #deleted="ngModel" ngModel [(ngModel)]="planoConta.deleted" name="deleted"></p-inputSwitch>
+		</div>
+		
+		<div class="ui-g-12">
+			<div class="ui-g-12 ui-md-4">
+				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+				<a routerLink="/planoconta" pButton label="Pesquisar"></a>
+			</div>
+		</div>
+		
+	
+	</div>
+  </form>
+  
+</div>
