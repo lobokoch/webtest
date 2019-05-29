@@ -1,3 +1,11 @@
+/**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:35:52.612
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************/
+
 import { PlanoConta } from './../planoconta/planoconta.model';
 import { FormaPagamento } from './../enums/financeiro-contaspagar-enums.model';
 import { ContaBancaria } from './../contabancaria/contabancaria.model';
@@ -48,14 +56,14 @@ export class ContaPagarListFilter extends PaginationFilter {
 
 export class ContaPagar {
 	id: string;
-	descricao: string;
-	valor: number;
-	dataVencimento: Date;
 	planoContas: PlanoConta;
+	descricao: string;
+	dataVencimento: Date;
+	valor: number;
 	formaPagamento: FormaPagamento;
-	outrosDescricao: string;
 	contaBancaria: ContaBancaria;
 	cartaoCredito: CartaoCredito;
+	outrosDescricao: string;
 	dataPagamento: Date;
 	valorDesconto: number;
 	valorMulta: number;

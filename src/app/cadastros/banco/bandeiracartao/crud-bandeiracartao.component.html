@@ -1,3 +1,13 @@
+<!--
+**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:36:00.780
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************
+-->
+
 <div class="container">
 
   <form #form1="ngForm" (ngSubmit)="save(form1)">
@@ -18,9 +28,13 @@
 		</div>
 		
 		<div class="ui-g-12">
-			<div class="ui-g-12 ui-md-4">
+			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
-				<button pButton (click)="begin(form1)" type="button" label="Novo" class="botao-margem-direita ui-button-info"></button>
+			</div>
+			<div class="ui-g-12 ui-md-2 ui-fluid">
+				<button pButton (click)="begin(form1)" type="button" label="Novo"></button>
+			</div>
+			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<a routerLink="/bandeiracartao" pButton label="Pesquisar"></a>
 			</div>
 		</div>

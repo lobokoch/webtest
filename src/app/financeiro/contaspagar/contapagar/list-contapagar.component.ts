@@ -1,3 +1,11 @@
+/**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:35:52.612
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************/
+
 
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, LazyLoadEvent, SelectItem} from 'primeng/api';
@@ -60,7 +68,7 @@ export class ContaPagarListComponent implements OnInit {
 	) { }
 	
 	ngOnInit() {
-    	this.contaPagarListFilter.sortField = new SortField('descricao', 1); // asc
+    	this.contaPagarListFilter.sortField = new SortField('planoContas', 1); // asc
 		this.initializeDateFilterIntervalDropdownItems();
 		
 		
@@ -120,7 +128,7 @@ export class ContaPagarListComponent implements OnInit {
 	    if (event.sortField) {
 	      this.contaPagarListFilter.sortField = new SortField(event.sortField, event.sortOrder);
 	    } else {
-	      this.contaPagarListFilter.sortField = new SortField('descricao', 1); // asc
+	      this.contaPagarListFilter.sortField = new SortField('planoContas', 1); // asc
 	    }
 	    const pageNumber = event.first / event.rows;
 	    this.contaPagarList(pageNumber);

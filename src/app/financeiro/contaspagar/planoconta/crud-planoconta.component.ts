@@ -1,3 +1,11 @@
+/**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:35:52.612
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************/
+
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -33,6 +41,7 @@ export class PlanoContaComponent implements OnInit {
 	}
 	
 	ngOnInit() {
+		this.initializeEnumFieldsWithDefault();
 	    const id = this.route.snapshot.params['id'];
 	    if (id) {
 	      this.getPlanoContaById(id);
@@ -43,6 +52,7 @@ export class PlanoContaComponent implements OnInit {
 	    form.reset();
 	    setTimeout(function() {
 	      this.planoConta = new PlanoConta();
+	      this.initializeEnumFieldsWithDefault();
 	    }.bind(this), 1);
 	}
 	
@@ -88,6 +98,11 @@ export class PlanoContaComponent implements OnInit {
 	    return Boolean(this.planoConta.id);
 	}
 	
+	initializeEnumFieldsWithDefault() {
+		this.planoConta.tipoReceitaDespesa = this.planoContaTipoReceitaDespesaOptions[0].value;
+	}
+	
+	
 	planoContaPlanoContaPaiAutoCompleteClear(event) {
 		// The autoComplete value has been reseted
 		this.planoConta.planoContaPai = null;
@@ -115,8 +130,8 @@ export class PlanoContaComponent implements OnInit {
 	
 	private initializePlanoContaTipoReceitaDespesaOptions() {
 	    this.planoContaTipoReceitaDespesaOptions = [
-	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_fixo'), value: 'FIXO' }, 
-	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_variavel'), value: 'VARIAVEL' }
+	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_variavel'), value: 'VARIAVEL' }, 
+	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_fixo'), value: 'FIXO' }
 	    ];
 	}
 	  

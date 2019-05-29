@@ -1,3 +1,11 @@
+/**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:35:52.612
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************/
+
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -36,6 +44,7 @@ export class ContaBancariaComponent implements OnInit {
 	}
 	
 	ngOnInit() {
+		this.initializeEnumFieldsWithDefault();
 	    const id = this.route.snapshot.params['id'];
 	    if (id) {
 	      this.getContaBancariaById(id);
@@ -46,6 +55,7 @@ export class ContaBancariaComponent implements OnInit {
 	    form.reset();
 	    setTimeout(function() {
 	      this.contaBancaria = new ContaBancaria();
+	      this.initializeEnumFieldsWithDefault();
 	    }.bind(this), 1);
 	}
 	
@@ -90,6 +100,11 @@ export class ContaBancariaComponent implements OnInit {
 	get isEditing() {
 	    return Boolean(this.contaBancaria.id);
 	}
+	
+	initializeEnumFieldsWithDefault() {
+		this.contaBancaria.tipoContaBancaria = this.contaBancariaTipoContaBancariaOptions[0].value;
+	}
+	
 	
 	contaBancariaAgenciaAutoCompleteClear(event) {
 		// The autoComplete value has been reseted

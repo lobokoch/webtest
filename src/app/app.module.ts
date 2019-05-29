@@ -1,3 +1,4 @@
+import { FinanceiroContasPagarTranslationService } from './financeiro/contaspagar/i18n/financeiro-contaspagar-translation.service';
 import { PlanoContasTreeService } from './financeiro/planocontas/planocontas-tree/planocontas-tree.service';
 import { PlanoContaTreeComponent } from './financeiro/planocontas/planocontas-tree/crud-planoconta-tree.component';
 import { ConfirmationService } from 'primeng/components/common/api';
@@ -53,6 +54,12 @@ import { FinanceiroPlanoContasTranslationService } from './financeiro/planoconta
 import { ContaPagarComponent } from './financeiro/contaspagar/contapagar/crud-contapagar.component';
 import { ContaPagarListComponent } from './financeiro/contaspagar/contapagar/list-contapagar.component';
 import { ContaPagarService } from './financeiro/contaspagar/contapagar/contapagar.service';
+import { PlanoContaService as FinanceiroContasPagar_PlanoContaService } from './financeiro/contaspagar/planoconta/planoconta.service';
+import { BancoService as FinanceiroContasPagar_BancoService } from './financeiro/contaspagar/banco/banco.service';
+import { AgenciaBancariaService as FinanceiroContasPagar_AgenciaBancariaService } from './financeiro/contaspagar/agenciabancaria/agenciabancaria.service';
+import { ContaBancariaService as FinanceiroContasPagar_ContaBancariaService } from './financeiro/contaspagar/contabancaria/contabancaria.service';
+import { CartaoCreditoService as FinanceiroContasPagar_CartaoCreditoService } from './financeiro/contaspagar/cartaocredito/cartaocredito.service';
+import { FornecedorService as FinanceiroContasPagar_FornecedorService } from './financeiro/contaspagar/fornecedor/fornecedor.service';
 
 import { FornecedorComponent } from './cadastros/fornecedor/fornecedor/crud-fornecedor.component';
 import { FornecedorListComponent } from './cadastros/fornecedor/fornecedor/list-fornecedor.component';
@@ -236,7 +243,15 @@ const routes: Routes = [
   	PlanoContasTreeService,
   	FinanceiroPlanoContasTranslationService,
 
-  	ContaPagarService,
+    ContaPagarService,
+    FinanceiroContasPagarTranslationService,
+    FinanceiroContasPagar_PlanoContaService,
+    FinanceiroContasPagar_BancoService,
+    FinanceiroContasPagar_AgenciaBancariaService,
+    FinanceiroContasPagar_ContaBancariaService,
+    FinanceiroContasPagar_CartaoCreditoService,
+    FinanceiroContasPagar_FornecedorService,
+
   	FornecedorService,
   	BancoService,
   	AgenciaBancariaService,

@@ -1,3 +1,13 @@
+<!--
+**********************************************************************************************
+Code generated with MKL Plug-in version: 3.0.2
+Code generated at time stamp: 2019-05-28T21:35:52.634
+Copyright: Kerubin - logokoch@gmail.com
+
+WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
+***********************************************************************************************
+-->
+
 <div class="container">
 
   	<div class="ui-g">
@@ -93,10 +103,10 @@
 			    
 			    <ng-template pTemplate="header">
 		            <tr>
-		            	<th [pSortableColumn]="'descricao'">{{ getTranslation('financeiro.contas_pagar.contaPagar_descricao_grid') }}<p-sortIcon [field]="'descricao'"></p-sortIcon></th>
-		            	<th style="width: 8em" [pSortableColumn]="'valor'">{{ getTranslation('financeiro.contas_pagar.contaPagar_valor_grid') }}<p-sortIcon [field]="'valor'"></p-sortIcon></th>
-		            	<th style="width: 7em" [pSortableColumn]="'dataVencimento'">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataVencimento_grid') }}<p-sortIcon [field]="'dataVencimento'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'planoContas'">{{ getTranslation('financeiro.contas_pagar.contaPagar_planoContas_grid') }}<p-sortIcon [field]="'planoContas'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'descricao'">{{ getTranslation('financeiro.contas_pagar.contaPagar_descricao_grid') }}<p-sortIcon [field]="'descricao'"></p-sortIcon></th>
+		            	<th style="width: 7em" [pSortableColumn]="'dataVencimento'">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataVencimento_grid') }}<p-sortIcon [field]="'dataVencimento'"></p-sortIcon></th>
+		            	<th style="width: 8em" [pSortableColumn]="'valor'">{{ getTranslation('financeiro.contas_pagar.contaPagar_valor_grid') }}<p-sortIcon [field]="'valor'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'formaPagamento'">{{ getTranslation('financeiro.contas_pagar.contaPagar_formaPagamento_grid') }}<p-sortIcon [field]="'formaPagamento'"></p-sortIcon></th>
 		            	<th style="width: 7em" [pSortableColumn]="'dataPagamento'">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataPagamento_grid') }}<p-sortIcon [field]="'dataPagamento'"></p-sortIcon></th>
 		            	<th style="width: 8em" [pSortableColumn]="'valorPago'">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorPago_grid') }}<p-sortIcon [field]="'valorPago'"></p-sortIcon></th>
@@ -108,16 +118,16 @@
 			    <ng-template pTemplate="body" let-contaPagar>
 		            <tr [ngClass]="applyAndGetRuleGridRowStyleClass(contaPagar)" [pSelectableRow]="contaPagar">
 		            	<td>
-		            		{{contaPagar?.descricao}}
+		            		{{contaPagarPlanoContasAutoCompleteFieldConverter(contaPagar?.planoContas)}}
 		            	</td>
-		            	<td class="kb-field-money">
-		            		{{contaPagar?.valor | currency:'BRL':'symbol':'1.2-2':'pt' }}
+		            	<td>
+		            		{{contaPagar?.descricao}}
 		            	</td>
 		            	<td>
 		            		{{contaPagar?.dataVencimento | date:'dd/MM/yyyy'}}
 		            	</td>
-		            	<td>
-		            		{{contaPagarPlanoContasAutoCompleteFieldConverter(contaPagar?.planoContas)}}
+		            	<td class="kb-field-money">
+		            		{{contaPagar?.valor | currency:'BRL':'symbol':'1.2-2':'pt' }}
 		            	</td>
 		            	<td>
 		            		{{ getTranslation('financeiro.contas_pagar.contaPagar_formaPagamento' + '_' + contaPagar?.formaPagamento?.toLowerCase()) }}
@@ -163,9 +173,9 @@
 				<ng-template pTemplate="footer">
 					<tr>
 						<td class="kb-sum-footer">Totais</td>
+						<td class="kb-sum-footer"></td>
+						<td class="kb-sum-footer"></td>
 						<td class="kb-sum-footer sumField kb-conta-valor-apagar">A: {{ contaPagarSumFields.sumValor | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-						<td class="kb-sum-footer"></td>
-						<td class="kb-sum-footer"></td>
 						<td class="kb-sum-footer"></td>
 						<td class="kb-sum-footer"></td>
 						<td class="kb-sum-footer sumField kb-conta-valor-pago">B: {{ contaPagarSumFields.sumValorPago | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
@@ -177,7 +187,7 @@
 		</div>
 		<!-- End GRID -->
 		
-		<div class="ui-g-12">
+		<div class="ui-g-12 ui-md-2 ui-fluid">
 			<a routerLink="/contapagar/novo" pButton label="Novo registro"></a>
 		</div>
 		
