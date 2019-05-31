@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:36:21.656
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:21:52.390
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -23,7 +23,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="nome">{{ getTranslation('cadastros.fornecedor.fornecedor_nome') }}</label>
-			<input type="text" pInputText #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
+			<input type="text" pInputText appFocus #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
 			<div class="invalid-message" *ngIf="nome.invalid && nome.dirty">Campo obrigatório.</div>
 		</div>
 		
@@ -32,22 +32,22 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<input type="text" pInputText #cpfCNPJ="ngModel" ngModel [(ngModel)]="fornecedor.cpfCNPJ" name="cpfCNPJ">
 		</div>
 		
-		<div class="ui-g-12 ui-fluid ui-md-4">
+		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="ie">{{ getTranslation('cadastros.fornecedor.fornecedor_ie') }}</label>
 			<input type="text" pInputText #ie="ngModel" ngModel [(ngModel)]="fornecedor.ie" name="ie">
 		</div>
 		
-		<div class="ui-g-12 ui-fluid ui-md-4">
+		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="nomeContato">{{ getTranslation('cadastros.fornecedor.fornecedor_nomeContato') }}</label>
 			<input type="text" pInputText #nomeContato="ngModel" ngModel [(ngModel)]="fornecedor.nomeContato" name="nomeContato">
 		</div>
 		
-		<div class="ui-g-12 ui-fluid ui-md-2">
+		<div class="ui-g-12 ui-fluid ui-md-3">
 			<label for="fone">{{ getTranslation('cadastros.fornecedor.fornecedor_fone') }}</label>
 			<input type="text" pInputText #fone="ngModel" ngModel [(ngModel)]="fornecedor.fone" name="fone">
 		</div>
 		
-		<div class="ui-g-12 ui-fluid ui-md-2">
+		<div class="ui-g-12 ui-fluid ui-md-3">
 			<label for="celular">{{ getTranslation('cadastros.fornecedor.fornecedor_celular') }}</label>
 			<input type="text" pInputText #celular="ngModel" ngModel [(ngModel)]="fornecedor.celular" name="celular">
 		</div>

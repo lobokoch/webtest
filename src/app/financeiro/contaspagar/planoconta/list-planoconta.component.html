@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:35:52.634
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:20:55.809
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -78,6 +78,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		            <tr>
 		            	<th [pSortableColumn]="'codigo'">{{ getTranslation('financeiro.contas_pagar.planoConta_codigo_grid') }}<p-sortIcon [field]="'codigo'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'descricao'">{{ getTranslation('financeiro.contas_pagar.planoConta_descricao_grid') }}<p-sortIcon [field]="'descricao'"></p-sortIcon></th>
+		            	<th [pSortableColumn]="'tipoFinanceiro'">{{ getTranslation('financeiro.contas_pagar.planoConta_tipoFinanceiro_grid') }}<p-sortIcon [field]="'tipoFinanceiro'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'tipoReceitaDespesa'">{{ getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_grid') }}<p-sortIcon [field]="'tipoReceitaDespesa'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'planoContaPai'">{{ getTranslation('financeiro.contas_pagar.planoConta_planoContaPai_grid') }}<p-sortIcon [field]="'planoContaPai'"></p-sortIcon></th>
 		            	<th [pSortableColumn]="'ativo'">{{ getTranslation('financeiro.contas_pagar.planoConta_ativo_grid') }}<p-sortIcon [field]="'ativo'"></p-sortIcon></th>
@@ -93,6 +94,9 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		            	</td>
 		            	<td>
 		            		{{planoConta?.descricao}}
+		            	</td>
+		            	<td>
+		            		{{ getTranslation('financeiro.contas_pagar.planoConta_tipoFinanceiro' + '_' + planoConta?.tipoFinanceiro?.toLowerCase()) }}
 		            	</td>
 		            	<td>
 		            		{{ getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa' + '_' + planoConta?.tipoReceitaDespesa?.toLowerCase()) }}
@@ -117,7 +121,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		        
 		        <ng-template pTemplate="emptymessage" let-columns>
 				    <tr>
-				        <td [attr.colspan]="7">
+				        <td [attr.colspan]="8">
 				            Nenhum registro encontrado.
 				        </td>
 				    </tr>

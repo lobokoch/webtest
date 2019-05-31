@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:36:00.780
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:21:04.463
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -25,7 +25,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<label for="banco">{{ getTranslation('cadastros.banco.agenciaBancaria_banco') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="agenciaBancariaBancoAutoCompleteSuggestions" (completeMethod)="agenciaBancariaBancoAutoComplete($event)" (onClear)="agenciaBancariaBancoAutoCompleteClear($event)" [field]="agenciaBancariaBancoAutoCompleteFieldConverter" #banco="ngModel" ngModel [(ngModel)]="agenciaBancaria.banco" name="banco" required>
 				<ng-template let-banco pTemplate="item">
-											<div class="ui-helper-clearfix">{{ agenciaBancariaBancoAutoCompleteFieldConverter(banco) }}</div>
+					<div class="ui-helper-clearfix">{{ agenciaBancariaBancoAutoCompleteFieldConverter(banco) }}</div>
 				</ng-template>
 			</p-autoComplete>
 			<div class="invalid-message" *ngIf="banco.invalid && banco.dirty">Campo obrigatório.</div>

@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit {
         items: [
 
           {
-            label: 'PlanoContas',
+            label: 'Plano de contas',
             icon: 'pi pi-fw ',
             items: [
               { label: 'Plano de Contas', icon: 'pi pi-fw', routerLink: '/planoconta' }
@@ -62,7 +62,7 @@ export class MenuComponent implements OnInit {
           },
 
           {
-            label: 'ContasPagar',
+            label: 'Contas a pagar',
             icon: 'pi pi-fw ',
             items: [
               { label: 'Contas a pagar', icon: 'pi pi-fw', routerLink: '/contapagar' }

@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:35:52.634
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:20:55.809
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -23,7 +23,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="nomeTitular">{{ getTranslation('financeiro.contas_pagar.contaBancaria_nomeTitular') }}</label>
-			<input type="text" pInputText #nomeTitular="ngModel" ngModel [(ngModel)]="contaBancaria.nomeTitular" name="nomeTitular" required>
+			<input type="text" pInputText appFocus #nomeTitular="ngModel" ngModel [(ngModel)]="contaBancaria.nomeTitular" name="nomeTitular" required>
 			<div class="invalid-message" *ngIf="nomeTitular.invalid && nomeTitular.dirty">Campo obrigatório.</div>
 		</div>
 		
@@ -31,7 +31,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<label for="agencia">{{ getTranslation('financeiro.contas_pagar.contaBancaria_agencia') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaBancariaAgenciaAutoCompleteSuggestions" (completeMethod)="contaBancariaAgenciaAutoComplete($event)" (onClear)="contaBancariaAgenciaAutoCompleteClear($event)" [field]="contaBancariaAgenciaAutoCompleteFieldConverter" #agencia="ngModel" ngModel [(ngModel)]="contaBancaria.agencia" name="agencia" required>
 				<ng-template let-agencia pTemplate="item">
-											<div class="ui-helper-clearfix">{{ contaBancariaAgenciaAutoCompleteFieldConverter(agencia) }}</div>
+					<div class="ui-helper-clearfix">{{ contaBancariaAgenciaAutoCompleteFieldConverter(agencia) }}</div>
 				</ng-template>
 			</p-autoComplete>
 			<div class="invalid-message" *ngIf="agencia.invalid && agencia.dirty">Campo obrigatório.</div>

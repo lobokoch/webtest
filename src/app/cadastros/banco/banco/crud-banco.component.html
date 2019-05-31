@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:36:00.780
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:21:04.463
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -23,7 +23,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="numero">{{ getTranslation('cadastros.banco.banco_numero') }}</label>
-			<input type="text" pInputText #numero="ngModel" ngModel [(ngModel)]="banco.numero" name="numero" required>
+			<input type="text" pInputText appFocus #numero="ngModel" ngModel [(ngModel)]="banco.numero" name="numero" required>
 			<div class="invalid-message" *ngIf="numero.invalid && numero.dirty">Campo obrigatório.</div>
 		</div>
 		

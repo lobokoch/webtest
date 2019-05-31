@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:35:52.634
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:20:55.809
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -23,7 +23,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="nome">{{ getTranslation('financeiro.contas_pagar.fornecedor_nome') }}</label>
-			<input type="text" pInputText #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
+			<input type="text" pInputText appFocus #nome="ngModel" ngModel [(ngModel)]="fornecedor.nome" name="nome" required>
 			<div class="invalid-message" *ngIf="nome.invalid && nome.dirty">Campo obrigatório.</div>
 		</div>
 		

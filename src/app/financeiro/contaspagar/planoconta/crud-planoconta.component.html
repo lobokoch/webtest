@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:35:52.634
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:20:55.809
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -23,7 +23,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="codigo">{{ getTranslation('financeiro.contas_pagar.planoConta_codigo') }}</label>
-			<input type="text" pInputText #codigo="ngModel" ngModel [(ngModel)]="planoConta.codigo" name="codigo" required>
+			<input type="text" pInputText appFocus #codigo="ngModel" ngModel [(ngModel)]="planoConta.codigo" name="codigo" required>
 			<div class="invalid-message" *ngIf="codigo.invalid && codigo.dirty">Campo obrigatório.</div>
 		</div>
 		
@@ -31,6 +31,12 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<label for="descricao">{{ getTranslation('financeiro.contas_pagar.planoConta_descricao') }}</label>
 			<input type="text" pInputText #descricao="ngModel" ngModel [(ngModel)]="planoConta.descricao" name="descricao" required>
 			<div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
+		</div>
+		
+		<div class="ui-g-12 ui-fluid">
+			<label for="tipoFinanceiro">{{ getTranslation('financeiro.contas_pagar.planoConta_tipoFinanceiro') }}</label>
+			<p-dropdown [options]="planoContaTipoFinanceiroOptions" placeholder="Selecione um item..." #tipoFinanceiro="ngModel" ngModel [(ngModel)]="planoConta.tipoFinanceiro" name="tipoFinanceiro" required></p-dropdown>
+			<div class="invalid-message" *ngIf="tipoFinanceiro.invalid && tipoFinanceiro.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-2">
@@ -42,7 +48,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<label for="planoContaPai">{{ getTranslation('financeiro.contas_pagar.planoConta_planoContaPai') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="planoContaPlanoContaPaiAutoCompleteSuggestions" (completeMethod)="planoContaPlanoContaPaiAutoComplete($event)" (onClear)="planoContaPlanoContaPaiAutoCompleteClear($event)" [field]="planoContaPlanoContaPaiAutoCompleteFieldConverter" #planoContaPai="ngModel" ngModel [(ngModel)]="planoConta.planoContaPai" name="planoContaPai">
 				<ng-template let-planoContaPai pTemplate="item">
-											<div class="ui-helper-clearfix">{{ planoContaPlanoContaPaiAutoCompleteFieldConverter(planoContaPai) }}</div>
+					<div class="ui-helper-clearfix">{{ planoContaPlanoContaPaiAutoCompleteFieldConverter(planoContaPai) }}</div>
 				</ng-template>
 			</p-autoComplete>
 		</div>

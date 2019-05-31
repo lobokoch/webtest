@@ -154,7 +154,7 @@ const routes: Routes = [
 	{ path: 'cartaocredito', component: CartaoCreditoListComponent, canActivate: [AuthGuard] },
 	// Kerubin Begin
 
-  { path: 'mainmenu', component: PlanoContaTreeComponent, canActivate: [AuthGuard] },
+  { path: 'mainmenu', component: ContaPagarListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'confignewaccount', component: ConfigNewAccountComponent },
   { path: 'newaccount', component: NewAccountComponent },

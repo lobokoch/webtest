@@ -1,6 +1,6 @@
 /**********************************************************************************************
-Code generated with MKL Plug-in version: 3.0.2
-Code generated at time stamp: 2019-05-28T21:35:52.612
+Code generated with MKL Plug-in version: 3.4.1
+Code generated at time stamp: 2019-05-30T20:20:55.617
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -18,6 +18,8 @@ import { FinanceiroContasPagarTranslationService } from './../i18n/financeiro-co
 
 import { PlanoContaAutoComplete } from './../planoconta/planoconta.model';
 
+import { TipoPlanoContaFinanceiro } from './../enums/financeiro-contaspagar-enums.model';
+
 import { TipoReceitaDespesa } from './../enums/financeiro-contaspagar-enums.model';
 
 @Component({
@@ -29,6 +31,9 @@ import { TipoReceitaDespesa } from './../enums/financeiro-contaspagar-enums.mode
 export class PlanoContaComponent implements OnInit {
 	planoConta = new PlanoConta();
 	planoContaPlanoContaPaiAutoCompleteSuggestions: PlanoContaAutoComplete[];
+	planoContaTipoFinanceiroOptions: TipoPlanoContaFinanceiro[];
+	
+	
 	planoContaTipoReceitaDespesaOptions: TipoReceitaDespesa[];
 	
 	constructor(
@@ -37,6 +42,8 @@ export class PlanoContaComponent implements OnInit {
 	    private route: ActivatedRoute,
 	    private messageService: MessageService
 	) { 
+		this.initializePlanoContaTipoFinanceiroOptions();
+		
 		this.initializePlanoContaTipoReceitaDespesaOptions();
 	}
 	
@@ -128,6 +135,13 @@ export class PlanoContaComponent implements OnInit {
 		}
 	}
 	
+	private initializePlanoContaTipoFinanceiroOptions() {
+	    this.planoContaTipoFinanceiroOptions = [
+	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoFinanceiro_receita'), value: 'RECEITA' }, 
+	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoFinanceiro_despesa'), value: 'DESPESA' }
+	    ];
+	}
+	  
 	private initializePlanoContaTipoReceitaDespesaOptions() {
 	    this.planoContaTipoReceitaDespesaOptions = [
 	    	{ label: this.getTranslation('financeiro.contas_pagar.planoConta_tipoReceitaDespesa_variavel'), value: 'VARIAVEL' }, 
