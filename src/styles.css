@@ -13,6 +13,12 @@ body {
   text-align: center;
 }
 
+.kb-label-required {
+  margin-left: 2px;
+  font-weight: bold;
+  color: red;
+}
+
 .total-conta-paga {
   color: blue;
   font-weight: bold;

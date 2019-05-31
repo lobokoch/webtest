@@ -10,7 +10,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
 <div class="container">
 
-  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  <form #form1="ngForm" (ngSubmit)="save(form1.form)">
   	<div class="ui-g">
 
 		<div class="ui-g-12">
@@ -22,7 +22,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 
 		<div class="ui-g-12 ui-fluid ui-md-6">
-			<label for="planoContas">{{ getTranslation('financeiro.contas_pagar.contaPagar_planoContas') }}</label>
+			<label for="planoContas">{{ getTranslation('financeiro.contas_pagar.contaPagar_planoContas') }}</label><label class="kb-label-required">*</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarPlanoContasAutoCompleteSuggestions" (completeMethod)="contaPagarPlanoContasAutoComplete($event)" (onClear)="contaPagarPlanoContasAutoCompleteClear($event)" [field]="contaPagarPlanoContasAutoCompleteFieldConverter" #planoContas="ngModel" ngModel [(ngModel)]="contaPagar.planoContas" name="planoContas" required>
 				<ng-template let-planoContas pTemplate="item">
 					<div class="ui-helper-clearfix">{{ contaPagarPlanoContasAutoCompleteFieldConverter(planoContas) }}</div>
