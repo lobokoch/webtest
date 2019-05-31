@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.4.1
-Code generated at time stamp: 2019-05-30T20:21:56.350
+Code generated with MKL Plug-in version: 3.5.0
+Code generated at time stamp: 2019-05-31T07:35:28.482
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -10,7 +10,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
 <div class="container">
 
-  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  <form #form1="ngForm" (ngSubmit)="save(form1.form)">
   	<div class="ui-g">
   	
 		<div class="ui-g-12">
@@ -22,19 +22,19 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-2">
-			<label for="codigo">{{ getTranslation('financeiro.plano_contas.planoConta_codigo') }}</label>
+			<label for="codigo">{{ getTranslation('financeiro.plano_contas.planoConta_codigo') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText appFocus #codigo="ngModel" ngModel [(ngModel)]="planoConta.codigo" name="codigo" required>
 			<div class="invalid-message" *ngIf="codigo.invalid && codigo.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-10">
-			<label for="descricao">{{ getTranslation('financeiro.plano_contas.planoConta_descricao') }}</label>
+			<label for="descricao">{{ getTranslation('financeiro.plano_contas.planoConta_descricao') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText #descricao="ngModel" ngModel [(ngModel)]="planoConta.descricao" name="descricao" required>
 			<div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-2">
-			<label for="tipoFinanceiro">{{ getTranslation('financeiro.plano_contas.planoConta_tipoFinanceiro') }}</label>
+			<label for="tipoFinanceiro">{{ getTranslation('financeiro.plano_contas.planoConta_tipoFinanceiro') }}</label><label class="kb-label-required">*</label>
 			<p-dropdown [options]="planoContaTipoFinanceiroOptions" placeholder="Selecione um item..." #tipoFinanceiro="ngModel" ngModel [(ngModel)]="planoConta.tipoFinanceiro" name="tipoFinanceiro" required></p-dropdown>
 			<div class="invalid-message" *ngIf="tipoFinanceiro.invalid && tipoFinanceiro.dirty">Campo obrigatório.</div>
 		</div>
@@ -54,14 +54,14 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-1">
-			<label style="display: block" for="ativo">{{ getTranslation('financeiro.plano_contas.planoConta_ativo') }}</label>
+			<label style="display: block" for="ativo">{{ getTranslation('financeiro.plano_contas.planoConta_ativo') }}</label><label class="kb-label-required">*</label>
 			<p-inputSwitch #ativo="ngModel" ngModel [(ngModel)]="planoConta.ativo" name="ativo" required></p-inputSwitch>
 			<div class="invalid-message" *ngIf="ativo.invalid && ativo.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-md-2 ui-fluid">
-				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
 			</div>
 			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<button pButton (click)="begin(form1)" type="button" label="Novo"></button>

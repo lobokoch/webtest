@@ -1,6 +1,6 @@
 /**********************************************************************************************
-Code generated with MKL Plug-in version: 3.4.1
-Code generated at time stamp: 2019-05-30T20:21:04.449
+Code generated with MKL Plug-in version: 3.5.0
+Code generated at time stamp: 2019-05-31T07:34:53.684
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -8,7 +8,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
 
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MessageService} from 'primeng/api';
 
@@ -47,15 +47,32 @@ export class BancoComponent implements OnInit {
 	    }.bind(this), 1);
 	}
 	
+	validateAllFormFields(form: FormGroup) {
+	    Object.keys(form.controls).forEach(field => {
+	      const control = form.get(field);
+	
+	      if (control instanceof FormControl) {
+	        control.markAsDirty({ onlySelf: true });
+	      } else if (control instanceof FormGroup) {
+	        this.validateAllFormFields(control);
+	      }
+	    });
+	}
+	
 	save(form: FormControl) {
+		if (!form.valid) {
+	      this.validateAllFormFields(form);
+	      return;
+	    }
+		    
 	    if (this.isEditing) {
-	      this.update(form);
+	      this.update();
 	    } else {
-	      this.create(form);
+	      this.create();
 	    }
 	}
 	
-	create(form: FormControl) {
+	create() {
 	    this.bancoService.create(this.banco)
 	    .then((banco) => {
 	      this.banco = banco;
@@ -66,7 +83,7 @@ export class BancoComponent implements OnInit {
 	    });
 	}
 	
-	update(form: FormControl) {
+	update() {
 	    this.bancoService.update(this.banco)
 	    .then((banco) => {
 	      this.banco = banco;

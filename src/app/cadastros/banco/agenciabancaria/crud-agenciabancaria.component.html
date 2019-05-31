@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.4.1
-Code generated at time stamp: 2019-05-30T20:21:04.463
+Code generated with MKL Plug-in version: 3.5.0
+Code generated at time stamp: 2019-05-31T07:34:53.764
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -10,7 +10,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
 <div class="container">
 
-  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  <form #form1="ngForm" (ngSubmit)="save(form1.form)">
   	<div class="ui-g">
   	
 		<div class="ui-g-12">
@@ -22,7 +22,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-6">
-			<label for="banco">{{ getTranslation('cadastros.banco.agenciaBancaria_banco') }}</label>
+			<label for="banco">{{ getTranslation('cadastros.banco.agenciaBancaria_banco') }}</label><label class="kb-label-required">*</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="agenciaBancariaBancoAutoCompleteSuggestions" (completeMethod)="agenciaBancariaBancoAutoComplete($event)" (onClear)="agenciaBancariaBancoAutoCompleteClear($event)" [field]="agenciaBancariaBancoAutoCompleteFieldConverter" #banco="ngModel" ngModel [(ngModel)]="agenciaBancaria.banco" name="banco" required>
 				<ng-template let-banco pTemplate="item">
 					<div class="ui-helper-clearfix">{{ agenciaBancariaBancoAutoCompleteFieldConverter(banco) }}</div>
@@ -32,13 +32,13 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-5">
-			<label for="numeroAgencia">{{ getTranslation('cadastros.banco.agenciaBancaria_numeroAgencia') }}</label>
+			<label for="numeroAgencia">{{ getTranslation('cadastros.banco.agenciaBancaria_numeroAgencia') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText #numeroAgencia="ngModel" ngModel [(ngModel)]="agenciaBancaria.numeroAgencia" name="numeroAgencia" required>
 			<div class="invalid-message" *ngIf="numeroAgencia.invalid && numeroAgencia.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-1">
-			<label for="digitoAgencia">{{ getTranslation('cadastros.banco.agenciaBancaria_digitoAgencia') }}</label>
+			<label for="digitoAgencia">{{ getTranslation('cadastros.banco.agenciaBancaria_digitoAgencia') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText #digitoAgencia="ngModel" ngModel [(ngModel)]="agenciaBancaria.digitoAgencia" name="digitoAgencia" required>
 			<div class="invalid-message" *ngIf="digitoAgencia.invalid && digitoAgencia.dirty">Campo obrigatório.</div>
 		</div>
@@ -60,7 +60,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-md-2 ui-fluid">
-				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
 			</div>
 			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<button pButton (click)="begin(form1)" type="button" label="Novo"></button>

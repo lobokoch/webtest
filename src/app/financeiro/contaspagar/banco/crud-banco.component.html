@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.4.1
-Code generated at time stamp: 2019-05-30T20:20:55.809
+Code generated with MKL Plug-in version: 3.5.0
+Code generated at time stamp: 2019-05-31T07:34:58.753
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -10,7 +10,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
 <div class="container">
 
-  <form #form1="ngForm" (ngSubmit)="save(form1)">
+  <form #form1="ngForm" (ngSubmit)="save(form1.form)">
   	<div class="ui-g">
   	
 		<div class="ui-g-12">
@@ -22,13 +22,13 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-4">
-			<label for="numero">{{ getTranslation('financeiro.contas_pagar.banco_numero') }}</label>
+			<label for="numero">{{ getTranslation('financeiro.contas_pagar.banco_numero') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText appFocus #numero="ngModel" ngModel [(ngModel)]="banco.numero" name="numero" required>
 			<div class="invalid-message" *ngIf="numero.invalid && numero.dirty">Campo obrigatório.</div>
 		</div>
 		
 		<div class="ui-g-12 ui-fluid ui-md-8">
-			<label for="nome">{{ getTranslation('financeiro.contas_pagar.banco_nome') }}</label>
+			<label for="nome">{{ getTranslation('financeiro.contas_pagar.banco_nome') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText #nome="ngModel" ngModel [(ngModel)]="banco.nome" name="nome" required>
 			<div class="invalid-message" *ngIf="nome.invalid && nome.dirty">Campo obrigatório.</div>
 		</div>
@@ -40,7 +40,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 		
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-md-2 ui-fluid">
-				<button [disabled]="!form1.valid" class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
+				<button class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
 			</div>
 			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<button pButton (click)="begin(form1)" type="button" label="Novo"></button>

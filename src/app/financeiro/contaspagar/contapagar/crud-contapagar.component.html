@@ -1,7 +1,7 @@
 <!--
 **********************************************************************************************
-Code generated with MKL Plug-in version: 3.4.1
-Code generated at time stamp: 2019-05-30T20:20:55.809
+Code generated with MKL Plug-in version: 3.5.0
+Code generated at time stamp: 2019-05-31T07:34:58.753
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -12,7 +12,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 
   <form #form1="ngForm" (ngSubmit)="save(form1.form)">
   	<div class="ui-g">
-
+  	
 		<div class="ui-g-12">
 			<h1>{{ getTranslation('financeiro.contas_pagar.contaPagar') }}</h1>
 		</div>
@@ -20,7 +20,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			<label for="id" class="hidden">{{ getTranslation('financeiro.contas_pagar.contaPagar_id') }}</label>
 			<input type="hidden" pInputText #id="ngModel" ngModel [(ngModel)]="contaPagar.id" name="id" readonly class="read-only">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="planoContas">{{ getTranslation('financeiro.contas_pagar.contaPagar_planoContas') }}</label><label class="kb-label-required">*</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarPlanoContasAutoCompleteSuggestions" (completeMethod)="contaPagarPlanoContasAutoComplete($event)" (onClear)="contaPagarPlanoContasAutoCompleteClear($event)" [field]="contaPagarPlanoContasAutoCompleteFieldConverter" #planoContas="ngModel" ngModel [(ngModel)]="contaPagar.planoContas" name="planoContas" required>
@@ -30,31 +30,31 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 			</p-autoComplete>
 			<div class="invalid-message" *ngIf="planoContas.invalid && planoContas.dirty">Campo obrigatório.</div>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-6">
-			<label for="descricao">{{ getTranslation('financeiro.contas_pagar.contaPagar_descricao') }}</label>
+			<label for="descricao">{{ getTranslation('financeiro.contas_pagar.contaPagar_descricao') }}</label><label class="kb-label-required">*</label>
 			<input type="text" pInputText #descricao="ngModel" ngModel [(ngModel)]="contaPagar.descricao" name="descricao" required>
 			<div class="invalid-message" *ngIf="descricao.invalid && descricao.dirty">Campo obrigatório.</div>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
-			<label for="dataVencimento">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataVencimento') }}</label>
+			<label for="dataVencimento">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataVencimento') }}</label><label class="kb-label-required">*</label>
 			<p-calendar dateFormat="dd/mm/yy" #dataVencimento="ngModel" ngModel [(ngModel)]="contaPagar.dataVencimento" name="dataVencimento" required></p-calendar>
 			<div class="invalid-message" *ngIf="dataVencimento.invalid && dataVencimento.dirty">Campo obrigatório.</div>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
-			<label for="valor">{{ getTranslation('financeiro.contas_pagar.contaPagar_valor') }}</label>
+			<label for="valor">{{ getTranslation('financeiro.contas_pagar.contaPagar_valor') }}</label><label class="kb-label-required">*</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valor="ngModel" ngModel [(ngModel)]="contaPagar.valor" name="valor" required>
 			<div class="invalid-message" *ngIf="valor.invalid && valor.dirty">Campo obrigatório.</div>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-8">
-			<label for="formaPagamento">{{ getTranslation('financeiro.contas_pagar.contaPagar_formaPagamento') }}</label>
+			<label for="formaPagamento">{{ getTranslation('financeiro.contas_pagar.contaPagar_formaPagamento') }}</label><label class="kb-label-required">*</label>
 			<p-dropdown [options]="contaPagarFormaPagamentoOptions" placeholder="Selecione um item..." #formaPagamento="ngModel" ngModel [(ngModel)]="contaPagar.formaPagamento" name="formaPagamento" required></p-dropdown>
 			<div class="invalid-message" *ngIf="formaPagamento.invalid && formaPagamento.dirty">Campo obrigatório.</div>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="contaBancaria">{{ getTranslation('financeiro.contas_pagar.contaPagar_contaBancaria') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarContaBancariaAutoCompleteSuggestions" (completeMethod)="contaPagarContaBancariaAutoComplete($event)" (onClear)="contaPagarContaBancariaAutoCompleteClear($event)" [field]="contaPagarContaBancariaAutoCompleteFieldConverter" #contaBancaria="ngModel" ngModel [(ngModel)]="contaPagar.contaBancaria" name="contaBancaria">
@@ -63,7 +63,7 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 				</ng-template>
 			</p-autoComplete>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="cartaoCredito">{{ getTranslation('financeiro.contas_pagar.contaPagar_cartaoCredito') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarCartaoCreditoAutoCompleteSuggestions" (completeMethod)="contaPagarCartaoCreditoAutoComplete($event)" (onClear)="contaPagarCartaoCreditoAutoCompleteClear($event)" [field]="contaPagarCartaoCreditoAutoCompleteFieldConverter" #cartaoCredito="ngModel" ngModel [(ngModel)]="contaPagar.cartaoCredito" name="cartaoCredito">
@@ -72,42 +72,42 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 				</ng-template>
 			</p-autoComplete>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="outrosDescricao">{{ getTranslation('financeiro.contas_pagar.contaPagar_outrosDescricao') }}</label>
 			<input type="text" pInputText #outrosDescricao="ngModel" ngModel [(ngModel)]="contaPagar.outrosDescricao" name="outrosDescricao">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="dataPagamento">{{ getTranslation('financeiro.contas_pagar.contaPagar_dataPagamento') }}</label>
 			<p-calendar dateFormat="dd/mm/yy" #dataPagamento="ngModel" ngModel [(ngModel)]="contaPagar.dataPagamento" name="dataPagamento"></p-calendar>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="valorDesconto">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorDesconto') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorDesconto="ngModel" ngModel [(ngModel)]="contaPagar.valorDesconto" name="valorDesconto">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="valorMulta">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorMulta') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorMulta="ngModel" ngModel [(ngModel)]="contaPagar.valorMulta" name="valorMulta">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="valorJuros">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorJuros') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorJuros="ngModel" ngModel [(ngModel)]="contaPagar.valorJuros" name="valorJuros">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="valorAcrescimos">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorAcrescimos') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorAcrescimos="ngModel" ngModel [(ngModel)]="contaPagar.valorAcrescimos" name="valorAcrescimos">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-2">
 			<label for="valorPago">{{ getTranslation('financeiro.contas_pagar.contaPagar_valorPago') }}</label>
 			<input pInputText type="text" currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}" placeholder="0,00" #valorPago="ngModel" ngModel [(ngModel)]="contaPagar.valorPago" name="valorPago">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="fornecedor">{{ getTranslation('financeiro.contas_pagar.contaPagar_fornecedor') }}</label>
 			<p-autoComplete placeholder="Digite para pesquisar..." [dropdown]="true" [forceSelection]="true" [suggestions]="contaPagarFornecedorAutoCompleteSuggestions" (completeMethod)="contaPagarFornecedorAutoComplete($event)" (onClear)="contaPagarFornecedorAutoCompleteClear($event)" [field]="contaPagarFornecedorAutoCompleteFieldConverter" #fornecedor="ngModel" ngModel [(ngModel)]="contaPagar.fornecedor" name="fornecedor">
@@ -116,55 +116,55 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 				</ng-template>
 			</p-autoComplete>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-6">
 			<label for="numDocumento">{{ getTranslation('financeiro.contas_pagar.contaPagar_numDocumento') }}</label>
 			<input type="text" pInputText #numDocumento="ngModel" ngModel [(ngModel)]="contaPagar.numDocumento" name="numDocumento">
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-12">
 			<label for="observacoes">{{ getTranslation('financeiro.contas_pagar.contaPagar_observacoes') }}</label>
 			<textarea pInputTextarea rows="3" #observacoes="ngModel" ngModel [(ngModel)]="contaPagar.observacoes" name="observacoes"></textarea>
 		</div>
-
+		
 		<div class="ui-g-12 ui-fluid ui-md-4">
 			<label for="agrupador">{{ getTranslation('financeiro.contas_pagar.contaPagar_agrupador') }}</label>
 			<input type="text" pInputText #agrupador="ngModel" ngModel [(ngModel)]="contaPagar.agrupador" name="agrupador">
 		</div>
-
+		 
 		<!-- BEGIN make copies -->
 		<!-- placeholder="Informe um identificador, exemplo: #luz_2019" -->
 		<!-- <div class="invalid-message" *ngIf="copiesMustHaveGroup && !contaPagar.agrupador">Campo obrigatório para gerar cópias.</div> -->
 		    <p-panel *ngIf="isEditing" class="ui-g-12" header="Gerar cópias da conta"  [toggleable]="true" [collapsed]="true">
 			    <div class="ui-g">
-
+			    
 				      <div class="ui-g-12 ui-fluid">
 				        <div class="ui-g-12 ui-fluid ui-md-2">
 				          <label for="numberOfCopies">Número de cópias</label>
 				          <p-spinner size="30" name="numberOfCopies" [(ngModel)]="numberOfCopies" [min]="1" [max]="60"></p-spinner>
 				        </div>
-
+				
 				        <div class="ui-g-12 ui-fluid ui-md-2">
 				          <label for="copiesReferenceField" style="display: block">Campo de referência</label>
 				          <p-dropdown optionLabel="label" name="copiesReferenceField" #copiesReferenceField="ngModel" [options]="copiesReferenceFieldOptions" ngModel [(ngModel)]="copiesReferenceFieldSelected" placeholder="Selecione"></p-dropdown>
 				        </div>
-
+				
 				        <div class="ui-g-12 ui-md-2 ui-fluid">
 				          <label for="copiesReferenceFieldInterval" style="display: block">Intervalo (dias)</label>
 				          <p-spinner size="30" name="copiesReferenceFieldInterval" [(ngModel)]="copiesReferenceFieldInterval" [min]="1" [max]="1000"></p-spinner>
 				        </div>
-
+				
 				        <div class="ui-g-12 ui-md-2 ui-fluid">
 				          <span style="display: block">&nbsp;</span>
 				          <button pButton (click)="actionFazerCopiasContaPagar()" type="button" pTooltip="Fazer cópias da conta" tooltipPosition="top" icon="pi pi-clone" label="Gerar cópias" class="ui-button-info"></button>
 				        </div>
 				      </div>
-
+				      
 			    </div>
-
+		    
 		    </p-panel>
 		    <!-- END make copies -->
-
+		
 		<div class="ui-g-12">
 			<div class="ui-g-12 ui-md-2 ui-fluid">
 				<button class="botao-margem-direita" pButton type="submit" label="Salvar"></button>
@@ -176,9 +176,9 @@ WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CO
 				<a routerLink="/contapagar" pButton label="Pesquisar"></a>
 			</div>
 		</div>
-
-
+		
+	
 	</div>
   </form>
-
+  
 </div>
