@@ -1,6 +1,6 @@
 /**********************************************************************************************
-Code generated with MKL Plug-in version: 3.5.0
-Code generated at time stamp: 2019-05-31T07:34:58.735
+Code generated with MKL Plug-in version: 3.5.1
+Code generated at time stamp: 2019-06-01T10:39:06.126
 Copyright: Kerubin - logokoch@gmail.com
 
 WARNING: DO NOT CHANGE THIS CODE BECAUSE THE CHANGES WILL BE LOST IN THE NEXT CODE GENERATION.
@@ -111,7 +111,7 @@ export class ContaPagarComponent implements OnInit {
 	    });
 	}
 	
-	save(form: FormControl) {
+	save(form: FormGroup) {
 		if (!form.valid) {
 	      this.validateAllFormFields(form);
 	      return;
